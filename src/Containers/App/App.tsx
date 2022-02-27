@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Product } from '../../Components/Product/Product';
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
+import { MapDistance } from '../../Components/MapDistance/MapDistance';
+import { loadMapApi } from '../../Utils/GoogleMapsUtils';
+
+
 
 const api = new WooCommerceRestApi({
     url: "https://aveleri.com/",
@@ -12,7 +16,7 @@ const api = new WooCommerceRestApi({
   });
 
 function App() {
-  const [products, setProducts] = useState([]);
+  /* const [products, setProducts] = useState<any[]>([]);
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -31,17 +35,28 @@ function App() {
         console.log(error.response.data);
 
       });
-  };
+  }; */
 
 
+//console.log(products);
 
+const [scriptLoaded, setScriptLoaded] = useState(false);
+
+useEffect(() => {
+    const googleMapScript = loadMapApi();
+    googleMapScript.addEventListener('load', function () {
+        setScriptLoaded(true);
+    });
+}, []);
 
   return (
     <div className="App">
-      {
-
-      }
-      <Product></Product>
+     {/*  {
+        products.map(product  => {
+          return <Product name={product.name} img={product.images[0].src} type={product.type} value={product.price} weight={product.weight}></Product>
+        })
+      } */}
+      { scriptLoaded && (<MapDistance></MapDistance>)}
       
     </div>
   );
