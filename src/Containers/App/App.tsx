@@ -4,6 +4,7 @@ import { Product } from '../../Components/Product/Product';
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 import { MapDistance } from '../../Components/MapDistance/MapDistance';
 import { loadMapApi } from '../../Utils/GoogleMapsUtils';
+import { AmountType } from '../../Types/AmountVisual';
 
 
 
@@ -16,10 +17,9 @@ const api = new WooCommerceRestApi({
   });
 
 function App() {
-  /* const [products, setProducts] = useState<any[]>([]);
-  useEffect(() => {
-    fetchOrders();
-  }, []);
+  const [products, setProducts] = useState<any[]>([]);
+  const [amountVisual, setAmountVisual] = useState<AmountType[]>([]);
+
 
   let fetchOrders = () => {
     api
@@ -35,10 +35,14 @@ function App() {
         console.log(error.response.data);
 
       });
-  }; */
+  }; 
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
 
-//console.log(products);
+console.log(products);
 
 const [scriptLoaded, setScriptLoaded] = useState(false);
 
@@ -49,13 +53,15 @@ useEffect(() => {
     });
 }, []);
 
+console.log(amountVisual);
+
   return (
     <div className="App">
-     {/*  {
+        {
         products.map(product  => {
-          return <Product name={product.name} img={product.images[0].src} type={product.type} value={product.price} weight={product.weight}></Product>
+          return <Product name={product.name} img={product.images[0].src} type={product.type} value={product.price} weight={product.weight} key={product.id} amountVisual={amountVisual} setAmountVisual={setAmountVisual} id={product.id}></Product>
         })
-      } */}
+      }  
       { scriptLoaded && (<MapDistance></MapDistance>)}
       
     </div>
