@@ -32,6 +32,25 @@ export const Product : React.FC<Product> = ({ name, img, type, value,weight, id,
         
     }
 
+    const updateVisualAmount = () =>{
+        const copyAmountVisual = [...amountVisual];
+        
+        copyAmountVisual.forEach(element => {
+            if(element.ID === id){
+                element.amount = amount;
+            }
+        });
+
+        console.log(amountVisual);
+        console.log(copyAmountVisual);
+        setAmountVisual(copyAmountVisual);
+    }
+
+    useEffect(() => {
+      updateVisualAmount();
+    }, [amount])
+    
+
     return <article className="product">
         <img src={img? img:imgNoFound} alt={img? img:imgNoFound} className="product_img"/>
         <section className="product_info">
