@@ -16,12 +16,17 @@ const y = 50;
 export const Animation: React.FC<Animation> = ({amountVisual}) => {
 	
 	let visualObjects = {amountVisual};
+	let imgTruckURL = truckItem;
+	let imgCementURL = cement;
 	let imgTruck: p5Types.Image ;
 	let imgCement : p5Types.Image ;
 
 	useEffect(() => {
 		visualObjects = {...visualObjects, amountVisual}
+		let imgTruckURL = truckItem;
+		let imgCementURL = cement;
 		console.log(imgCement);
+		console.log(imgTruck);
 	},[amountVisual])
 
 	const preload = (p5: p5Types) => {
@@ -41,14 +46,22 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 	};
 
 	const draw = (p5: p5Types) => {
-		
+		p5.background(255);
+		if (imgCementURL) {
+			imgCement = p5.loadImage(imgCementURL, (img) => imgCement = img)
+			imgCementURL = '';
+		}
+
+		if (imgTruckURL) {
+			imgTruck = p5.loadImage(imgTruckURL, (img) => imgTruck = img)
+			imgTruckURL = '';
+		}
 		
 		p5.fill(255);
 		
         visualObjects.amountVisual.forEach((object,i) =>{
             for (let index = 0; index < object.amount; index++) {
                 
-                p5.ellipse(x+(i*50), y+(index*50), 70, 70);
 				if(imgCement){
 					p5.image(imgCement,x+(i*50), y+(index*50),100,100);
 					
@@ -57,9 +70,8 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
             }
             
         })
-		p5.ellipse(50, 50, 70, 70);
 		if(imgTruck){
-			p5.image(imgTruck, 100,100,100,100)
+			p5.image(imgTruck, 100,100,502,300)
 		}
 		
 	};
