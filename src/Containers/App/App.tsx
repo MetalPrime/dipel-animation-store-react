@@ -5,22 +5,24 @@ import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 import { MapDistance } from '../../Components/MapDistance/MapDistance';
 import { loadMapApi } from '../../Utils/GoogleMapsUtils';
 import { AmountType } from '../../Types/AmountVisual';
+import { Animation } from '../../Components/Animation/Animation';
 
 
 
 const api = new WooCommerceRestApi({
     url: "https://aveleri.com/",
-    consumerKey: "ck_cfd56ff458ea681ea638d0da6a62acd6665e9791",
-    consumerSecret: "cs_7624ac89b0c8f36262d420319e0e2b803a63472e",
+    consumerKey: process.env.REACT_APP_WOOCOMMERCE_RESTAPI_CONSUMERKEY || "",
+    consumerSecret: process.env.REACT_APP_WOOCOMMERCE_RESTAPI_CONSUMERSECRET || "", 
     version: "wc/v3",
-    queryStringAuth: true
+    queryStringAuth: true,
+    axiosConfig: { headers: {}}
   });
 
 function App() {
   const [products, setProducts] = useState<any[]>([]);
   const [amountVisual, setAmountVisual] = useState<AmountType[]>([]);
 
-
+  console.log("Env variable", process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
   let fetchOrders = () => {
     api
       .get("products", {
@@ -42,7 +44,6 @@ function App() {
   }, []);
 
 
-console.log(products);
 
 const [scriptLoaded, setScriptLoaded] = useState(false);
 
@@ -53,12 +54,13 @@ useEffect(() => {
     });
 }, []);
 
-console.log(amountVisual);
 
   return (
     <div className="App">
+     { scriptLoaded && <Animation amountVisual={amountVisual}></Animation>}    
+      
         {
-        products.map(product  => {
+        scriptLoaded && products.map(product  => {
           return <Product name={product.name} img={product.images[0].src} type={product.type} value={product.price} weight={product.weight} key={product.id} amountVisual={amountVisual} setAmountVisual={setAmountVisual} id={product.id}></Product>
         })
       }  

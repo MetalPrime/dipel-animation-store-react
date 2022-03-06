@@ -20,17 +20,22 @@ export type Product = {
 export const Product : React.FC<Product> = ({ name, img, type, value,weight, id,amountVisual, setAmountVisual}) =>{
     const [amount,SetAmount] = useState<number>(0);
 
-    useEffect(() => {
-        addThisProduct();
-    },[])
+
+
     const addThisProduct = () =>{
         if(amountVisual.some(amount => amount.ID === id)){
 
         } else{
-            setAmountVisual(amountVisual => [...amountVisual,{ID: id,amount:amount}])
+            setAmountVisual(amountVisual => [...amountVisual,{ID: id,amount:amount}]);
+            
         }
         
     }
+
+    useEffect(() => {
+        addThisProduct();
+        
+    },[addThisProduct])
 
     const updateVisualAmount = () =>{
         const copyAmountVisual = [...amountVisual];
@@ -41,14 +46,12 @@ export const Product : React.FC<Product> = ({ name, img, type, value,weight, id,
             }
         });
 
-        console.log(amountVisual);
-        console.log(copyAmountVisual);
         setAmountVisual(copyAmountVisual);
     }
 
     useEffect(() => {
-      updateVisualAmount();
-    }, [amount])
+        updateVisualAmount();
+      }, [amount])
     
 
     return <article className="product">
