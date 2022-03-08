@@ -19,7 +19,7 @@ export const ProductSelection: React.FC<ProductSelection> = ({ scriptLoaded,amou
 
         {
             scriptLoaded && products.map(product => {
-                return <Product name={product.name} img={product.images[0].src} type={product.type} value={product.price} weight={product.weight} key={product.id} amountVisual={amountVisual} setAmountVisual={setAmountVisual} id={product.id}></Product>
+                return <Product name={product.name} img={product.images[0].src} type={product.type} value={product.price} weight={product.weight} key={product.id} amountVisual={amountVisual} setAmountVisual={setAmountVisual} id={product.id} shipping_class={product.shipping_class}></Product>
             })
         }
 

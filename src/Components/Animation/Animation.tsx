@@ -23,10 +23,8 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 
 	useEffect(() => {
 		visualObjects = {...visualObjects, amountVisual}
-		let imgTruckURL = truckItem;
-		let imgCementURL = cement;
-		console.log(imgCement);
-		console.log(imgTruck);
+		imgTruckURL = truckItem;
+		imgCementURL = cement;
 	},[amountVisual])
 
 	const preload = (p5: p5Types) => {

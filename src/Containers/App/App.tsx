@@ -8,7 +8,7 @@ import { ProductSelection } from '../ProductSelection/ProductSelection';
 import { PriceCalculator } from '../PriceCalculator/PriceCalculator';
 
 const api = new WooCommerceRestApi({
-  url: "https://aveleri.com/",
+  url: process.env.REACT_APP_WOOCOMMERCE_LINK || "",
   consumerKey: process.env.REACT_APP_WOOCOMMERCE_RESTAPI_CONSUMERKEY || "",
   consumerSecret: process.env.REACT_APP_WOOCOMMERCE_RESTAPI_CONSUMERSECRET || "",
   version: "wc/v3",
@@ -20,7 +20,6 @@ function App() {
   const [products, setProducts] = useState<any[]>([]);
   const [amountVisual, setAmountVisual] = useState<AmountType[]>([]);
 
-  console.log("Env variable", process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
   let fetchOrders = () => {
     api
       .get("products", {
@@ -42,7 +41,6 @@ function App() {
   }, []);
 
 
-
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
@@ -58,7 +56,7 @@ function App() {
         <Route path="/" element={<ProductSelection scriptLoaded={scriptLoaded} amountVisual={amountVisual} products={products} setAmountVisual={setAmountVisual}></ProductSelection>}>
           
         </Route>
-        <Route path="/calculate" element={<PriceCalculator scriptLoaded={scriptLoaded}></PriceCalculator>}>
+        <Route path="/calculate" element={<PriceCalculator scriptLoaded={scriptLoaded} products={products} amountVisual={amountVisual} ></PriceCalculator>}>
           
         </Route>
       </Routes>
