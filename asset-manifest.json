@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/dipel-animation-store-react/static/css/main.ae2994b8.css",
-    "main.js": "/dipel-animation-store-react/static/js/main.52310c79.js",
+    "main.js": "/dipel-animation-store-react/static/js/main.a861c68e.js",
     "static/js/787.f88d9763.chunk.js": "/dipel-animation-store-react/static/js/787.f88d9763.chunk.js",
     "static/media/Truck_Final_Front.svg": "/dipel-animation-store-react/static/media/Truck_Final_Front.600de7d68ea088a94b37accf53efa448.svg",
     "static/media/No-Photo-Available.jpg": "/dipel-animation-store-react/static/media/No-Photo-Available.138ef5a5dd5969ade58c.jpg",
@@ -9,11 +9,11 @@
     "static/media/cement.svg": "/dipel-animation-store-react/static/media/cement.c6cda4c1d134819b4a1ec2e05b70b621.svg",
     "index.html": "/dipel-animation-store-react/index.html",
     "main.ae2994b8.css.map": "/dipel-animation-store-react/static/css/main.ae2994b8.css.map",
-    "main.52310c79.js.map": "/dipel-animation-store-react/static/js/main.52310c79.js.map",
+    "main.a861c68e.js.map": "/dipel-animation-store-react/static/js/main.a861c68e.js.map",
     "787.f88d9763.chunk.js.map": "/dipel-animation-store-react/static/js/787.f88d9763.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ae2994b8.css",
-    "static/js/main.52310c79.js"
+    "static/js/main.a861c68e.js"
   ]
 }
