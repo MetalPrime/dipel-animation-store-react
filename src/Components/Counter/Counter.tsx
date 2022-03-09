@@ -20,9 +20,9 @@ export const Counter: React.FC<Counter> = ({amount, SetAmount}) => {
     })
 
     return <article className="counter">
-        <button onClick={()=>{handleClick("+")}} value={"+"} className="counter_btn">+</button>
-        <p className="counter_info">{amount}</p>
         <button onClick={()=>{handleClick("-")}} value={"-"} className="counter_btn">-</button>
+        <p className="counter_info">{amount}</p>
+        <button onClick={()=>{handleClick("+")}} value={"+"} className="counter_btn">+</button>
     </article>;
 }
 

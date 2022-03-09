@@ -45,25 +45,57 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({scriptLoaded, produc
 
     }
 
-    const getTotalFromProducts = (products: any[],amountVisual: AmountType[]) => {
-        amountVisual.forEach((amount,index) =>{
+    const getTotalPriceFromProducts = (products: any[],amountVisual: AmountType[]) => {
+        let  totalVlaue = 0;
+        let productsWithAmount = amountVisual.filter(product => product.amount>0);
+
+        productsWithAmount.forEach((amount,index) =>{
             if(amount.ID === products[index].id){
-                if(amount.amount >0){
-                    //products[index].price * amount.amount;
-                }
+                    totalVlaue +=  (products[index].price * amount.amount);
+                
             }
             
         })
-        return 10000000;
+        return totalVlaue;
     }
 
-    const getPriceForCemento = () =>{
-        amountVisual.forEach(amount => {
-            if(amount.shipping_class === "cemento"){
-                return amount.amount;
+    console.log(getTotalPriceFromProducts(products,amountVisual));
+
+    const getTotalPriceFromTravel = () =>{
+
+    }
+
+    const getTotalPriceFromCondition = () => {
+        let totalPrice = 0;
+        const sumTotalProducts = getProductWithItems(amountVisual);
+
+        sumTotalProducts?.forEach(product => {
+            switch(product.shipping_class){
+                case 'acabados':
+                    break;
+                case 'madera':
+                    break;
+                case 'ladrillos':
+                    const productsLadrillos = products.filter(produ => produ.shipping_class === 'ladrillos');
+                    console.log(productsLadrillos);
+                    //productsLadrillos.reduce((acc,current) =>  Number(acc.price)+=current.price,0);
+                    console.log(productsLadrillos);
+                    break;
+                case 'cemento':
+                    if(product.amount>50){
+                        totalPrice+=0;
+                    } else{
+                        totalPrice+=50000
+                    }
+                    break;
+                case 'acero':
+                    //product.weight>1500?totalPrice+=150000: 2800000;
+                    break;
             }
         })
     }
+
+    console.log(getTotalPriceFromCondition());
     console.log(getProductWithItems(amountVisual));
 
     return (

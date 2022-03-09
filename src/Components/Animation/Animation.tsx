@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import Sketch from "react-p5";
 import p5Types from "p5"; //Import this for typechecking and intellisense
 import { AmountType } from "../../Types/AmountVisual";
-import truckItem from "../../Resources/truck_lateral_2nd.svg";
+import truckLateralItem from "../../Resources/Truck_Final_Lateral.svg";
+import truckFrontItem from "../../Resources/Truck_Final_Front.svg";
 import cement from "../../Resources/cement.svg";
 
 export type Animation = {
@@ -16,19 +17,27 @@ const y = 50;
 export const Animation: React.FC<Animation> = ({amountVisual}) => {
 	
 	let visualObjects = {amountVisual};
-	let imgTruckURL = truckItem;
+
+	let imgTruckLateralURL = truckLateralItem;
+	let imgTruckFrontalURL = truckFrontItem;
 	let imgCementURL = cement;
-	let imgTruck: p5Types.Image ;
+
+
+	let imgTruckLateral: p5Types.Image ;
 	let imgCement : p5Types.Image ;
+	let imgTruckFront: p5Types.Image
 
 	useEffect(() => {
 		visualObjects = {...visualObjects, amountVisual}
-		imgTruckURL = truckItem;
+		imgTruckLateralURL = truckLateralItem;
+		imgTruckFrontalURL = truckFrontItem;
 		imgCementURL = cement;
 	},[amountVisual])
 
 	const preload = (p5: p5Types) => {
-		imgTruck = p5.loadImage(truckItem);
+		imgTruckLateral = p5.loadImage(truckLateralItem);
+
+		imgTruckFront = p5.loadImage(truckFrontItem);
 		
 		p5.loadImage(cement,img => {
 			imgCement = img;
@@ -38,8 +47,8 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
     
 	//See annotations in JS for more information
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
-		p5.createCanvas(700, 700).parent(canvasParentRef);
-		console.log(imgTruck);
+		p5.createCanvas(1080, 560).parent(canvasParentRef);
+		console.log(imgTruckLateral);
 		console.log(imgCement);
 	};
 
@@ -50,27 +59,38 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 			imgCementURL = '';
 		}
 
-		if (imgTruckURL) {
-			imgTruck = p5.loadImage(imgTruckURL, (img) => imgTruck = img)
-			imgTruckURL = '';
+		if (imgTruckLateralURL) {
+			imgTruckLateral = p5.loadImage(imgTruckLateralURL, (img) => imgTruckLateral = img)
+			imgTruckLateralURL = '';
+		}
+
+		if (imgTruckFrontalURL) {
+			imgTruckFront = p5.loadImage(imgTruckFrontalURL, (img) => imgTruckFront = img)
+			imgTruckFrontalURL = '';
 		}
 		
 		p5.fill(255);
+
+		if(imgTruckLateral){
+			p5.image(imgTruckLateral, 100,100)
+		}
 		
         visualObjects.amountVisual.forEach((object,i) =>{
             for (let index = 0; index < object.amount; index++) {
                 
 				if(imgCement){
-					p5.image(imgCement,x+(i*50), y+(index*50),100,100);
+					p5.image(imgCement,x+(i*50), y+(index*50),50,50);
 					
 				}
 				
             }
             
         })
-		if(imgTruck){
-			p5.image(imgTruck, 100,100,502,300)
+
+		if(imgTruckLateral){
+			p5.image(imgTruckFront, 250,130)
 		}
+
 		
 	};
 
