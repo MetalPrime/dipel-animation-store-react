@@ -3,13 +3,22 @@
     justify-content:space-between;
     width: inherit;
     height: 10%;
+    background-color: #fff;
+
 }
 
 .counter_btn{
     width: 20%;
+    border: none;
+    background: #CD8441;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
 }
 
 .counter_info{
-    width:max-content;
     font-size: 25px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
 }

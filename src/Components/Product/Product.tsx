@@ -59,8 +59,8 @@ export const Product : React.FC<Product> = ({ name, img, type, value,weight, id,
         <img src={img? img:imgNoFound} alt={img? img:imgNoFound} className="product_img"/>
         <section className="product_info">
             <h1 className="product_title">{name !== ""? name: "Nomnre producto"}</h1>
-            <p>Tipo: {type? type: "Tipo de producto"}</p>
-            <p>Peso: {weight? weight: "Peso de producto"}</p>
+            <p className="product_text">Tipo: {type? type: "Tipo de producto"}</p>
+            <p className="product_text">Peso: {weight? weight: "Peso de producto"}</p>
         </section>
         <Counter amount={amount} SetAmount={SetAmount } ></Counter>
     </article>

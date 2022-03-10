@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import './Animation.css'
 import Sketch from "react-p5";
 import p5Types from "p5"; //Import this for typechecking and intellisense
 import { AmountType } from "../../Types/AmountVisual";
@@ -21,6 +22,7 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 	let imgTruckLateralURL = truckLateralItem;
 	let imgTruckFrontalURL = truckFrontItem;
 	let imgCementURL = cement;
+	let canvas;
 
 
 	let imgTruckLateral: p5Types.Image ;
@@ -47,7 +49,8 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
     
 	//See annotations in JS for more information
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
-		p5.createCanvas(1080, 560).parent(canvasParentRef);
+		canvas = p5.createCanvas(720,480).parent(canvasParentRef);
+		
 		console.log(imgTruckLateral);
 		console.log(imgCement);
 	};
@@ -94,7 +97,7 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 		
 	};
 
-	return <Sketch preload={preload}setup={setup} draw={draw} />;
+	return <Sketch preload={preload}setup={setup} draw={draw}  />;
 };
 
 

@@ -1,0 +1,17 @@
+.ProductSelection{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.ProductSelection_animation{
+    width: 100%;
+}
+
+.ProductSelection_products{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left:2%;
+    margin-top: -100px;
+}
