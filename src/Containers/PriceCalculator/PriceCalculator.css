@@ -1,0 +1,45 @@
+h1{
+    font-size: 18px;
+}
+
+h2{
+    font-size: 16px;
+}
+
+p{
+    font-size: 12px;
+}
+
+.PriceCalculator{
+    width: 100%;
+    height: 100vh;
+}
+
+.PriceCalculator__Prices{
+    display: flex;
+    justify-content:space-evenly;
+    background-color: #FDC20B;
+}
+
+.PriceCalculator__Price{
+    width: 30%;
+    background-color: aliceblue;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+    padding: 0.4rem;
+}
+
+.PriceCalculator__Price__item{
+
+}
+
+.PriceCalculator__Total{
+    display: flex;
+    justify-content: flex-end;
+    align-items:center;
+    margin-right: 0.4rem;
+}
+
+.PriceCalculator__Total > * {
+    margin: 0.4rem;
+}

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Input } from '../Input/Input';
 import './MapDistance.css';
 import Geocode from "react-geocode";
-import { useState } from 'react';
 import { AmountType } from '../../Types/AmountVisual';
 import { Direction } from '../../Types/Direction';
 
@@ -47,7 +46,7 @@ export const MapDistance: React.FC<MapDistance> = ({totalProducts,showDistance,s
 
   const handleSubmitted = (event: any) => {
     event.preventDefault();
-    Geocode.fromAddress(event.target.Destino.value).then(
+    Geocode.fromAddress(event.target.Destino.value + ", Valle del Cauca, Colombia").then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
         getLocationsNecessary({lat, lng},setShowDistance);
@@ -110,6 +109,8 @@ export const MapDistance: React.FC<MapDistance> = ({totalProducts,showDistance,s
         distance: res!.rows[0]!.elements[0]?.distance?.text!,
         shipping_class: shipping_class
       }
+
+      
       callback(showDistance => [...showDistance,obj])
     });
     /* const finalDistance = Math.round(distanceInMeters/1000);
@@ -118,21 +119,18 @@ export const MapDistance: React.FC<MapDistance> = ({totalProducts,showDistance,s
 
   console.log(showDistance);
 
-  return <>
-    <div id="map"></div>
+  return <section className="PriceCalculator__Search">
+    <div id="map" className='PriceCalculator__Map'></div>
+    <h1>Escribe tu domicilio para calcular el costo con el envio</h1>
+    <section>
     <form onSubmit={handleSubmitted}>
       <Input name={'Destino'} type={'text'}></Input>
       <button type="submit" >Encontrar</button>
+      <p>*Aplica sólo para municipios alrededor de Cali, Valle del Cauca</p>
     </form>
-    {showDistance.length>0 && showDistance.map((d, i) => 
-       <section key={d.shipping_class}>
-         <p>La distancia total es {d.distance}</p>
-         <p>Duración estimada del viaje: {d.duration}</p>
-         <p>Lugar de los insumos {d.place}</p>
-         <p>Productos: {d.shipping_class}</p>
-       </section>
-    )}
-  </>
+    </section>
+
+  </section>
 }
 
 

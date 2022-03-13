@@ -22,12 +22,12 @@ export const ProductSelection: React.FC<ProductSelection> = ({ scriptLoaded,amou
         <article className="ProductSelection_products">
         {
             scriptLoaded && products.map(product => {
-                return <Product name={product.name} img={product.images[0].src} type={product.type} value={product.price} weight={product.weight} key={product.id} amountVisual={amountVisual} setAmountVisual={setAmountVisual} id={product.id} shipping_class={product.shipping_class}></Product>
+                return <Product name={product.name} img={product.images[0].src} type={product.type} value={product.price} weight={product.weight} key={product.id} amountVisual={amountVisual} setAmountVisual={setAmountVisual} id={product.id} shipping_class={product.shipping_class} price={product.price}></Product>
             })
         }
             </article>
 
-        <article>
+        <article className="Calculate">
         <button><Link to={`/calculate`}>Continuar con la compra</Link></button>
         </article>
         

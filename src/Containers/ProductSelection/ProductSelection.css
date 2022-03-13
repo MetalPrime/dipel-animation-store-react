@@ -15,3 +15,32 @@
     padding-left:2%;
     margin-top: -100px;
 }
+
+.Calculate{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    width: 100%;
+    height:10vh;
+    background: linear-gradient(360deg, #4E4848 0%, rgba(78, 72, 72, 0) 96.4%, rgba(78, 72, 72, 0) 201.27%);
+}
+
+.Calculate button{
+    height: 70%;
+    background: #FDC20B;
+    border-radius: 7px;
+    border: none;
+    color:aliceblue;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.Calculate button:hover{
+    background: linear-gradient(267.91deg, #312708 20.3%, #563428 91.96%);
+    filter: drop-shadow(0px 2.73939px 8.21818px rgba(0, 0, 0, 0.25));
+}

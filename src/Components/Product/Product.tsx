@@ -12,13 +12,14 @@ export type Product = {
     type: string;
     value: string;
     weight: number;
+    price: number;
     shipping_class: string;
     id: number;
     amountVisual: AmountType[];
     setAmountVisual: React.Dispatch<React.SetStateAction<AmountType[]>>;
 }
 
-export const Product : React.FC<Product> = ({ name, img, type, value,weight, id,amountVisual, setAmountVisual,shipping_class}) =>{
+export const Product : React.FC<Product> = ({ name, img, type, value,weight, id,amountVisual, setAmountVisual,shipping_class, price}) =>{
     const [amount,SetAmount] = useState<number>(0);
 
 
@@ -61,6 +62,7 @@ export const Product : React.FC<Product> = ({ name, img, type, value,weight, id,
             <h1 className="product_title">{name !== ""? name: "Nomnre producto"}</h1>
             <p className="product_text">Tipo: {type? type: "Tipo de producto"}</p>
             <p className="product_text">Peso: {weight? weight: "Peso de producto"}</p>
+            <p className="product_text">Precio: {price? price: "Peso de producto"}</p>
         </section>
         <Counter amount={amount} SetAmount={SetAmount } ></Counter>
     </article>
