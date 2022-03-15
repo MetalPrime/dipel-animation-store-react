@@ -29,6 +29,14 @@ p{
     padding: 0.4rem;
 }
 
+.PriceCalculator__Price__section{
+    display: flex;
+}
+
+.PriceCalculator__Price__section p{
+    margin-right: 0.2rem;
+}
+
 .PriceCalculator__Price__item{
 
 }

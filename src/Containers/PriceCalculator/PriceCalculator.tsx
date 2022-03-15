@@ -20,8 +20,15 @@ export type Flete = {
 }
 
 export type AmountProduct = {
-    info: [],
+    info: nameProduct[],
     type: string,
+    total: number,
+}
+
+export type nameProduct = {
+    name: string,
+    price: number,
+    amount: number,
 }
 
 export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, products, amountVisual }) => {
@@ -59,17 +66,36 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
         let productsByShipping = products.filter(produ => produ.shipping_class === shippingClass);
         let amountByShipping = amountVisual.filter(product => product.shipping_class === shippingClass);
 
+        let item : AmountProduct = {
+            info: [],
+            type: '',
+            total: 0,
+        };
+
         let productWithPriceAndAmount = productsByShipping.map((product, index) => {
             if (product.id === amountByShipping[index].ID) {
+                item.type = amountByShipping[index].shipping_class;
+                if(amountByShipping[index].amount){
+                    if(item.info.some(ite => ite.name === product.name)){
+
+                    } else {
+                        item.info.push({name:product.name, amount: amountByShipping[index].amount, price: product.price})
+                    }
+                    
+                }
+                
                 return { ...product, ...amountByShipping[index] }
             } else {
                 return { ...product }
             }
+            
         });
-
-        let total = productWithPriceAndAmount.reduce((acc, current) => (current.price * current.amount) + acc, 0) as number;
         
-        return total;
+        console.log(item);
+        console.log({amountProducts})
+        let total = productWithPriceAndAmount.reduce((acc, current) => (current.price * current.amount) + acc, 0) as number;
+        item.total = total;
+        return {total,item};
 
     }
 
@@ -103,44 +129,81 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
     const getTotalPriceFromCondition = () => {
         let totalPrice = 0;
         const sumTotalProducts = getProductWithItems(amountVisual);
-        console.table(sumTotalProducts)
+        let copyArraay: AmountProduct[];
+
         sumTotalProducts?.forEach(product => {
             switch (product.shipping_class) {
                 case 'acabados':
                     let totalPriceOfAllAcabados = getTotalPriceFromShippingClass("acabados");
-                    console.log(totalPriceOfAllAcabados);
-                    if (totalPriceOfAllAcabados > 1000000) {
+                    
+                    if (totalPriceOfAllAcabados.total > 1000000) {
                         totalPrice += 130000;
                         
                     } else {
                         totalPrice += 1000000;
                     }
+                     copyArraay = amountProducts;
+                    if(amountProducts.some(item => item.type === "acabados")){
+                        
+                    } else {
+                        copyArraay.push(totalPriceOfAllAcabados.item);
+                    }
+                    
+                    SetAmountProducts(copyArraay);
 
                     break;
                 case 'madera':
                     let totalPriceOfAllWood = getTotalPriceFromShippingClass("madera");
-                    console.log(totalPriceOfAllWood);
-                    if (totalPriceOfAllWood > 500000) {
+                    
+                    if (totalPriceOfAllWood.total > 500000) {
                         totalPrice += 80000;
                     } else {
                         totalPrice += 500000;
                     }
+                    copyArraay = amountProducts;
+                    if(amountProducts.some(item => item.type === "acabados")){
+                       
+                    } else {
+                        copyArraay.push(totalPriceOfAllWood.item);
+                    }
+                    
+                    SetAmountProducts(copyArraay);
+
                     break;
                 case 'ladrillos':
                     let totalPriceOfAllProducts = getTotalPriceFromShippingClass("ladrillos");
-                    console.log(totalPriceOfAllProducts);
-                    if (totalPriceOfAllProducts > 1500000) {
+                    
+                    if (totalPriceOfAllProducts.total > 1500000) {
                         totalPrice += 200000;
                     } else {
                         totalPrice += 1500000;
                     }
+                    copyArraay = amountProducts;
+                    if(amountProducts.some(item => item.type === "acabados")){
+                        
+                    } else {
+                        copyArraay.push(totalPriceOfAllProducts.item);
+                    }
+                    
+                    SetAmountProducts(copyArraay);
+
                     break;
                 case 'cemento':
+                    let totalPriceOfAllCement = getTotalPriceFromShippingClass("cemento");
                     if (product.amount > 50) {
                         totalPrice += 0;
                     } else {
                         totalPrice += 100000
                     }
+                    copyArraay = amountProducts;
+                    if(amountProducts.some(item => item.type === "acabados")){
+                      
+                    } else {
+                        copyArraay.push(totalPriceOfAllCement.item);
+                    }
+                    
+                    SetAmountProducts(copyArraay);
+
                     break;
                 case 'acero':
                     //product.weight>1500?totalPrice+=150000: 2800000;
@@ -152,6 +215,13 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
     }
 
 
+    useEffect(() => {
+        
+        getTotalPriceFromCondition();
+    },[])
+
+
+    console.log({amountProducts});
 
     const calculateFinalPrice = () => {
         if (showDistance.length > 0) {
@@ -163,6 +233,8 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
 
     useEffect(() => {
         calculateFinalPrice();
+       
+
     }, [showDistance])
 
     return (
@@ -172,16 +244,30 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
 
                 <article className="PriceCalculator__Price">
                     <h2>Total de precio de productos</h2>
+                    <div className="PriceCalculator__Price__section">
+                        <p className="PriceCalculator__Price__names">Nombre</p>
+                        <p className="PriceCalculator__Price__names">Cantidad</p>
+                        <p className="PriceCalculator__Price__names">Precio</p>
+                    </div>
                     {
                         amountProducts.length > 0 && amountProducts.map((amountProduct =>
-                            <section key={amountProduct.type}>
-
+                            <section key={amountProduct.type} >
+                                {amountProduct.info.map((info) =>
+                                <div className="PriceCalculator__Price__section" key={info.name}>
+                                    <p>{info.name}</p>
+                                    <p>{info.amount}</p>
+                                    <p>{info.price}</p>
+                                </div>)}
+                               <h3>Total: {amountProduct.total}</h3> 
                             </section>
                             ))
                     }
                 </article>
                 <article className="PriceCalculator__Price">
                     <h2>Total de precio de fletes</h2>
+                    <div>
+
+                    </div>
                     {
                         fletes.length > 0 && fletes.map(flete =>
                             <section key={flete.tipo}>
