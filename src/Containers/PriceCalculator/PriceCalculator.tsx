@@ -161,7 +161,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                         totalPrice += 500000;
                     }
                     copyArraay = amountProducts;
-                    if(amountProducts.some(item => item.type === "acabados")){
+                    if(amountProducts.some(item => item.type === "madera")){
                        
                     } else {
                         copyArraay.push(totalPriceOfAllWood.item);
@@ -179,7 +179,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                         totalPrice += 1500000;
                     }
                     copyArraay = amountProducts;
-                    if(amountProducts.some(item => item.type === "acabados")){
+                    if(amountProducts.some(item => item.type === "ladrillos")){
                         
                     } else {
                         copyArraay.push(totalPriceOfAllProducts.item);
@@ -196,7 +196,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                         totalPrice += 100000
                     }
                     copyArraay = amountProducts;
-                    if(amountProducts.some(item => item.type === "acabados")){
+                    if(amountProducts.some(item => item.type === "cemento")){
                       
                     } else {
                         copyArraay.push(totalPriceOfAllCement.item);
@@ -253,12 +253,12 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                         amountProducts.length > 0 && amountProducts.map((amountProduct =>
                             <section key={amountProduct.type} >
                                 {amountProduct.info.map((info) =>
-                                <div className="PriceCalculator__Price__section" key={info.name}>
+                                info.amount && <div className="PriceCalculator__Price__section" key={info.name}>
                                     <p>{info.name}</p>
                                     <p>{info.amount}</p>
                                     <p>{info.price}</p>
                                 </div>)}
-                               <h3>Total: {amountProduct.total}</h3> 
+                                { amountProduct.total > 0 && <h3>Total: {amountProduct.total}</h3>} 
                             </section>
                             ))
                     }
