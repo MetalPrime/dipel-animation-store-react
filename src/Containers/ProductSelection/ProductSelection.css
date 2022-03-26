@@ -40,11 +40,21 @@
     border-radius: 7.53333px;
     border: none;
     filter: drop-shadow(0px 8px 34px rgba(0, 0, 0, 0.41));
+    color: #fff;
+    display:flex;
+    align-items: center;
 }
+
 
 .ProductSelection_filter:hover{
     background-color: #FFC300;
+    color: #260101;
 
+
+}
+
+.ProductSelection_filter:hover img{
+    filter: invert(1);
 
 }
 
