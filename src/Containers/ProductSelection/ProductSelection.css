@@ -12,6 +12,7 @@
     width: 100%;
     mix-blend-mode: overlay;
     background-size: cover;
+    background-color: #FFC300;
 }
 
 .ProductSelection_filters{

@@ -16,7 +16,7 @@ export type ProductSelection = {
 
 export const ProductSelection: React.FC<ProductSelection> = ({ scriptLoaded, amountVisual, products, setAmountVisual }) => {
     return <section className="ProductSelection">
-        <article className="ProductSelection_animation" style={{ backgroundImage: `url(${imgBackground})`, }}>
+        <article className="ProductSelection_animation" >
             {scriptLoaded && <Animation amountVisual={amountVisual}></Animation>}
             <section className="ProductSelection_filters">
                 <div className="ProductSelection_filters_container">
