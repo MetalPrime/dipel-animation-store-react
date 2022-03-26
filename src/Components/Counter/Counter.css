@@ -4,7 +4,7 @@
     width: inherit;
     height: 10%;
     background-color: #fff;
-
+    
 }
 
 .counter_btn{
@@ -14,6 +14,11 @@
     font-size: 15px;
     font-weight: bold;
     color: #fff;
+    border-radius: 7.53333px 0px 0px 7.53333px;
+}
+
+.counter_btn--1{
+    border-radius: 0px 7.53333px 7.53333px 0px;
 }
 
 .counter_info{
