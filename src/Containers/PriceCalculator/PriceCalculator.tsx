@@ -135,13 +135,21 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
             switch (product.shipping_class) {
                 case 'acabados':
                     let totalPriceOfAllAcabados = getTotalPriceFromShippingClass("acabados");
-                    
+                    let fleteAcabadis: Flete ={
+                        precio: '',
+                        tipo: '',
+                        estado: '',
+                        condition: ''
+                    };
+                    fleteAcabadis.tipo = "acabados"
                     if (totalPriceOfAllAcabados.total > 1000000) {
                         totalPrice += 130000;
                         
                     } else {
                         totalPrice += 1000000;
                     }
+
+                    //
                      copyArraay = amountProducts;
                     if(amountProducts.some(item => item.type === "acabados")){
                         
@@ -150,6 +158,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                     }
                     
                     SetAmountProducts(copyArraay);
+                    //
 
                     break;
                 case 'madera':

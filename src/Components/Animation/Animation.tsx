@@ -49,7 +49,7 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
     
 	//See annotations in JS for more information
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
-		canvas = p5.createCanvas(720,480).parent(canvasParentRef);
+		canvas = p5.createCanvas(p5.windowWidth * .8,480).parent(canvasParentRef);
 		
 		console.log(imgTruckLateral);
 		console.log(imgCement);
