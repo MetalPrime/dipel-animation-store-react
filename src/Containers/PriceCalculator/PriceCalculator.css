@@ -1,27 +1,67 @@
-h1{
+h1 {
     font-size: 18px;
 }
 
-h2{
+h2 {
     font-size: 16px;
 }
 
-p{
+p {
     font-size: 12px;
 }
 
-.PriceCalculator{
+.PriceCalculator {
     width: 100%;
     height: 100vh;
 }
 
-.PriceCalculator__Prices{
+.PriceCalculator__Searchinfo {
     display: flex;
-    justify-content:space-evenly;
-    background-color: #FDC20B;
+    flex-direction: column;
+    align-items: center;
 }
 
-.PriceCalculator__Price{
+.PriceCalculator__Searchform {
+    width: 52vw;
+}
+
+.PriceCalculator__Searchform button {
+    width: 22%;
+    background: #fdc20b;
+    border: none;
+    border-radius: 7px;
+    height: 43px;
+
+}
+
+.PriceCalculator__Searchform input {
+    width: 70%;
+    margin-right: 5%;
+    height: 35px;
+
+}
+
+.PriceCalculator__Searchform p {
+    width: 100%;
+    text-align: center;
+
+}
+
+.PriceCalculator__Prices {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #fdc20b;
+    height: 44.5%;
+}
+
+.PriceCalculator__Prices--1{
+    background-color: #fdc20b;
+    display: flex;
+    
+    width: 100%;
+}
+
+.PriceCalculator__Price {
     width: 30%;
     background-color: aliceblue;
     margin-top: 0.4rem;
@@ -29,23 +69,33 @@ p{
     padding: 0.4rem;
 }
 
-.PriceCalculator__Price__section{
+.PriceCalculator__Price__section {
     display: flex;
 }
 
-.PriceCalculator__Price__section p{
+.PriceCalculator__Price__section p {
     margin-right: 0.2rem;
 }
 
-.PriceCalculator__Price__item{
-
+.PriceCalculator__Price__item {
 }
 
-.PriceCalculator__Total{
+.PriceCalculator__Total {
+    background-color: aliceblue;
+    margin-left: 1.8rem;
+    
+    width: 100%;
     display: flex;
     justify-content: flex-end;
-    align-items:center;
-    margin-right: 0.4rem;
+    align-items: center;
+    margin-right: 1.8rem;
+    margin-bottom: 1.2rem;
+    margin-top: 1.2rem;
+}
+
+.PriceCalculator__Map {
+    height: 25vh;
+    width: 100%;
 }
 
 .PriceCalculator__Total > * {

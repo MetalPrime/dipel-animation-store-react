@@ -66,7 +66,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
         let productsByShipping = products.filter(produ => produ.shipping_class === shippingClass);
         let amountByShipping = amountVisual.filter(product => product.shipping_class === shippingClass);
 
-        let item : AmountProduct = {
+        let item: AmountProduct = {
             info: [],
             type: '',
             total: 0,
@@ -75,27 +75,27 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
         let productWithPriceAndAmount = productsByShipping.map((product, index) => {
             if (product.id === amountByShipping[index].ID) {
                 item.type = amountByShipping[index].shipping_class;
-                if(amountByShipping[index].amount){
-                    if(item.info.some(ite => ite.name === product.name)){
+                if (amountByShipping[index].amount) {
+                    if (item.info.some(ite => ite.name === product.name)) {
 
                     } else {
-                        item.info.push({name:product.name, amount: amountByShipping[index].amount, price: product.price})
+                        item.info.push({ name: product.name, amount: amountByShipping[index].amount, price: product.price })
                     }
-                    
+
                 }
-                
+
                 return { ...product, ...amountByShipping[index] }
             } else {
                 return { ...product }
             }
-            
+
         });
-        
+
         console.log(item);
-        console.log({amountProducts})
+        console.log({ amountProducts })
         let total = productWithPriceAndAmount.reduce((acc, current) => (current.price * current.amount) + acc, 0) as number;
         item.total = total;
-        return {total,item};
+        return { total, item };
 
     }
 
@@ -135,7 +135,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
             switch (product.shipping_class) {
                 case 'acabados':
                     let totalPriceOfAllAcabados = getTotalPriceFromShippingClass("acabados");
-                    let fleteAcabadis: Flete ={
+                    let fleteAcabadis: Flete = {
                         precio: '',
                         tipo: '',
                         estado: '',
@@ -144,56 +144,56 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                     fleteAcabadis.tipo = "acabados"
                     if (totalPriceOfAllAcabados.total > 1000000) {
                         totalPrice += 130000;
-                        
+
                     } else {
                         totalPrice += 1000000;
                     }
 
                     //
-                     copyArraay = amountProducts;
-                    if(amountProducts.some(item => item.type === "acabados")){
-                        
+                    copyArraay = amountProducts;
+                    if (amountProducts.some(item => item.type === "acabados")) {
+
                     } else {
                         copyArraay.push(totalPriceOfAllAcabados.item);
                     }
-                    
+
                     SetAmountProducts(copyArraay);
                     //
 
                     break;
                 case 'madera':
                     let totalPriceOfAllWood = getTotalPriceFromShippingClass("madera");
-                    
+
                     if (totalPriceOfAllWood.total > 500000) {
                         totalPrice += 80000;
                     } else {
                         totalPrice += 500000;
                     }
                     copyArraay = amountProducts;
-                    if(amountProducts.some(item => item.type === "madera")){
-                       
+                    if (amountProducts.some(item => item.type === "madera")) {
+
                     } else {
                         copyArraay.push(totalPriceOfAllWood.item);
                     }
-                    
+
                     SetAmountProducts(copyArraay);
 
                     break;
                 case 'ladrillos':
                     let totalPriceOfAllProducts = getTotalPriceFromShippingClass("ladrillos");
-                    
+
                     if (totalPriceOfAllProducts.total > 1500000) {
                         totalPrice += 200000;
                     } else {
                         totalPrice += 1500000;
                     }
                     copyArraay = amountProducts;
-                    if(amountProducts.some(item => item.type === "ladrillos")){
-                        
+                    if (amountProducts.some(item => item.type === "ladrillos")) {
+
                     } else {
                         copyArraay.push(totalPriceOfAllProducts.item);
                     }
-                    
+
                     SetAmountProducts(copyArraay);
 
                     break;
@@ -205,12 +205,12 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                         totalPrice += 100000
                     }
                     copyArraay = amountProducts;
-                    if(amountProducts.some(item => item.type === "cemento")){
-                      
+                    if (amountProducts.some(item => item.type === "cemento")) {
+
                     } else {
                         copyArraay.push(totalPriceOfAllCement.item);
                     }
-                    
+
                     SetAmountProducts(copyArraay);
 
                     break;
@@ -225,12 +225,12 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
 
 
     useEffect(() => {
-        
+
         getTotalPriceFromCondition();
-    },[])
+    }, [])
 
 
-    console.log({amountProducts});
+    console.log({ amountProducts });
 
     const calculateFinalPrice = () => {
         if (showDistance.length > 0) {
@@ -242,7 +242,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
 
     useEffect(() => {
         calculateFinalPrice();
-       
+
 
     }, [showDistance])
 
@@ -262,14 +262,14 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                         amountProducts.length > 0 && amountProducts.map((amountProduct =>
                             <section key={amountProduct.type} >
                                 {amountProduct.info.map((info) =>
-                                info.amount && <div className="PriceCalculator__Price__section" key={info.name}>
-                                    <p>{info.name}</p>
-                                    <p>{info.amount}</p>
-                                    <p>{info.price}</p>
-                                </div>)}
-                                { amountProduct.total > 0 && <h3>Total: {amountProduct.total}</h3>} 
+                                    info.amount && <div className="PriceCalculator__Price__section" key={info.name}>
+                                        <p>{info.name}</p>
+                                        <p>{info.amount}</p>
+                                        <p>{info.price}</p>
+                                    </div>)}
+                                {amountProduct.total > 0 && <h3>Total: {amountProduct.total}</h3>}
                             </section>
-                            ))
+                        ))
                     }
                 </article>
                 <article className="PriceCalculator__Price">
@@ -295,7 +295,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                         <section key={d.shipping_class} className="PriceCalculator__Price__item">
                             <p>La distancia total es {d.distance}</p>
                             <p>Duración estimada del viaje: {d.duration}</p>
-                            <p>Lugar de los insumos {d.place}</p>
+                            <p>Lugar de origen: {d.place}</p>
                             <p>Productos: {d.shipping_class}</p>
                         </section>
                     )}
@@ -303,9 +303,12 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
 
 
             </article>
-            <article className="PriceCalculator__Total">
-                <p>Precio Total:</p>
-                <h2>{totalPrice}</h2>
+            <article className="PriceCalculator__Prices--1">
+                <section className="PriceCalculator__Total"> 
+                    <p>Precio Total:</p>
+                    <h2>{totalPrice}</h2>
+                </section>
+
             </article>
 
         </section>

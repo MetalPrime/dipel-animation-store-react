@@ -12,7 +12,7 @@ import ladrillosIcon from '../../Resources/ladrillosIcon.svg';
 import maderaIcon from '../../Resources/maderaIcon.svg';
 import { AmountType } from '../../Types/AmountVisual';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export type ProductSelection = {
     scriptLoaded: boolean,
@@ -26,6 +26,10 @@ export const ProductSelection: React.FC<ProductSelection> = ({ scriptLoaded, amo
     let [copyProducts,setCopyProducts] = useState(products);
     let [isSelected, setIsSelected] = useState<"todos"|"cemento"|"acabados"|"madera"|"acero"|"ladrillos">("todos");
 
+    useEffect(() => {
+        setCopyProducts(products);
+    },[products])
+    
     const handleFilter = (productItem: "todos"| "cemento" | "acabados" | "madera" | "acero" | "ladrillos") => {
         let productsCopy = [...products];
 
@@ -46,7 +50,7 @@ export const ProductSelection: React.FC<ProductSelection> = ({ scriptLoaded, amo
     return <section className="ProductSelection">
         <article className="ProductSelection_animation" >
             {scriptLoaded && <Animation amountVisual={amountVisual}></Animation>}
-            <section className="ProductSelection_filters">
+            {scriptLoaded && <section className="ProductSelection_filters">
                 <div className="ProductSelection_filters_container">
                     <button className={isSelected === "todos"? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={()=>{
                         handleFilter("todos");
@@ -87,6 +91,7 @@ export const ProductSelection: React.FC<ProductSelection> = ({ scriptLoaded, amo
                 </div>
 
             </section>
+}
         </article>
 
         <article className="ProductSelection_products">
