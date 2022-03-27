@@ -297,6 +297,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                             <p>Duración estimada del viaje: {d.duration}</p>
                             <p>Lugar de origen: {d.place}</p>
                             <p>Productos: {d.shipping_class}</p>
+                            <p>Total: {getTotalPriceFromTravel()}</p>
                         </section>
                     )}
                 </article>

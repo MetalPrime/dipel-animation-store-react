@@ -126,7 +126,7 @@ export const MapDistance: React.FC<MapDistance> = ({ totalProducts, showDistance
       <h1>Escribe tu domicilio para calcular el costo con el envio</h1>
       <section  className="PriceCalculator__Searchform">
         <form onSubmit={handleSubmitted}>
-          <input placeholder="Dirección" type="text"></input>
+          <input placeholder="Dirección" type="text" className='="Destino' id="Destino"></input>
           <button type="submit" >Buscar</button>
           <p>*Aplica sólo para municipios alrededor de Cali, Valle del Cauca</p>
         </form>

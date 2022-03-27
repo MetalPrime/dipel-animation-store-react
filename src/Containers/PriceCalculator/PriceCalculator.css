@@ -69,6 +69,11 @@ p {
     padding: 0.4rem;
 }
 
+.PriceCalculator__Price > *{
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+}
+
 .PriceCalculator__Price__section {
     display: flex;
 }
