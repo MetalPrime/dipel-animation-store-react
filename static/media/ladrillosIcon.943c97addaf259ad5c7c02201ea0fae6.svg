@@ -1,0 +1,31 @@
+<svg width="79" height="63" viewBox="0 0 79 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_648_107" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="79" height="63">
+<path d="M0 13.4406C0 6.01756 6.01756 0 13.4406 0H79V63H13.4406C6.01756 63 0 56.9824 0 49.5594V13.4406Z" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask0_648_107)">
+<path d="M82.9196 55.0342H66.8433V62.9999H82.9196V55.0342Z" fill="white"/>
+<path d="M63.0534 55.0342H46.9771V62.9999H63.0534V55.0342Z" fill="white"/>
+<path d="M43.1865 55.0342H27.1101V62.9999H43.1865V55.0342Z" fill="white"/>
+<path d="M23.3212 55.0342H7.24487V62.9999H23.3212V55.0342Z" fill="white"/>
+<path d="M72.986 43.6282H56.9097V51.5939H72.986V43.6282Z" fill="white"/>
+<path d="M53.1203 43.6282H37.0439V51.5939H53.1203V43.6282Z" fill="white"/>
+<path d="M33.2541 43.6282H17.1777V51.5939H33.2541V43.6282Z" fill="white"/>
+<path d="M13.4407 43.6384H-2.68799V51.9363H13.4407V43.6384Z" fill="white"/>
+<path d="M82.9196 9.40747H66.8433V17.3732H82.9196V9.40747Z" fill="white"/>
+<path d="M63.0534 9.40747H46.9771V17.3732H63.0534V9.40747Z" fill="white"/>
+<path d="M43.1865 9.40747H27.1101V17.3732H43.1865V9.40747Z" fill="white"/>
+<path d="M23.3212 9.40747H7.24487V17.3732H23.3212V9.40747Z" fill="white"/>
+<path d="M72.986 -2H56.9097V5.96568H72.986V-2Z" fill="white"/>
+<path d="M53.1203 -2H37.0439V5.96568H53.1203V-2Z" fill="white"/>
+<path d="M33.2541 -2H17.1777V5.96568H33.2541V-2Z" fill="white"/>
+<path d="M13.3884 -2H-2.68799V5.96568H13.3884V-2Z" fill="white"/>
+<path d="M82.9196 32.2209H66.8433V40.1866H82.9196V32.2209Z" fill="white"/>
+<path d="M63.0534 32.2209H46.9771V40.1866H63.0534V32.2209Z" fill="white"/>
+<path d="M43.1865 32.2209H27.1101V40.1866H43.1865V32.2209Z" fill="white"/>
+<path d="M23.3212 32.2209H7.24487V40.1866H23.3212V32.2209Z" fill="white"/>
+<path d="M72.986 20.8135H56.9097V28.7792H72.986V20.8135Z" fill="white"/>
+<path d="M53.1203 20.8135H37.0439V28.7792H53.1203V20.8135Z" fill="white"/>
+<path d="M33.2541 20.8135H17.1777V28.7792H33.2541V20.8135Z" fill="white"/>
+<path d="M13.3884 20.8135H-2.68799V28.7792H13.3884V20.8135Z" fill="white"/>
+</g>
+</svg>
