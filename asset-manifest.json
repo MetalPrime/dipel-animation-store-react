@@ -1,12 +1,13 @@
 {
   "files": {
     "main.css": "/dipel-animation-store-react/static/css/main.92ed999e.css",
-    "main.js": "/dipel-animation-store-react/static/js/main.63b7d920.js",
+    "main.js": "/dipel-animation-store-react/static/js/main.ef7275d8.js",
     "static/js/787.f88d9763.chunk.js": "/dipel-animation-store-react/static/js/787.f88d9763.chunk.js",
     "static/media/imageMapa.jpg": "/dipel-animation-store-react/static/media/imageMapa.f4844ea0a42beac5ce3d.jpg",
-    "static/media/Truck_Final_Front.svg": "/dipel-animation-store-react/static/media/Truck_Final_Front.600de7d68ea088a94b37accf53efa448.svg",
+    "static/media/Truck_Final_Front.png": "/dipel-animation-store-react/static/media/Truck_Final_Front.b8b5926ef66f401bd8c9.png",
+    "static/media/carretera@4x.png": "/dipel-animation-store-react/static/media/carretera@4x.b8c6e9cbc77f753c3055.png",
+    "static/media/Truck_Final_Lateral.png": "/dipel-animation-store-react/static/media/Truck_Final_Lateral.d88156dd493e7c26b8a6.png",
     "static/media/No-Photo-Available.jpg": "/dipel-animation-store-react/static/media/No-Photo-Available.138ef5a5dd5969ade58c.jpg",
-    "static/media/Truck_Final_Lateral.svg": "/dipel-animation-store-react/static/media/Truck_Final_Lateral.e62db3f04c56508211a6c810f8e64734.svg",
     "static/media/cement.svg": "/dipel-animation-store-react/static/media/cement.c6cda4c1d134819b4a1ec2e05b70b621.svg",
     "static/media/acabadosIcon.svg": "/dipel-animation-store-react/static/media/acabadosIcon.b38e3bf154d5175ff6bc9aa133529ac8.svg",
     "static/media/ladrillosIcon.svg": "/dipel-animation-store-react/static/media/ladrillosIcon.943c97addaf259ad5c7c02201ea0fae6.svg",
@@ -16,11 +17,11 @@
     "static/media/cementoIcon.svg": "/dipel-animation-store-react/static/media/cementoIcon.44589a6a762c6160ca014a380cffc4d6.svg",
     "static/media/aceroIcon.svg": "/dipel-animation-store-react/static/media/aceroIcon.603bb132f048488a29f0aa4052e03712.svg",
     "main.92ed999e.css.map": "/dipel-animation-store-react/static/css/main.92ed999e.css.map",
-    "main.63b7d920.js.map": "/dipel-animation-store-react/static/js/main.63b7d920.js.map",
+    "main.ef7275d8.js.map": "/dipel-animation-store-react/static/js/main.ef7275d8.js.map",
     "787.f88d9763.chunk.js.map": "/dipel-animation-store-react/static/js/787.f88d9763.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.92ed999e.css",
-    "static/js/main.63b7d920.js"
+    "static/js/main.ef7275d8.js"
   ]
 }
