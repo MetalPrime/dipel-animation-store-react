@@ -78,8 +78,8 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    padding-left:2%;
     margin-top: 25px;
+    justify-content: space-evenly;
 }
 
 .Calculate{

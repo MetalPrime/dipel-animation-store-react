@@ -5,7 +5,7 @@ import p5Types from "p5"; //Import this for typechecking and intellisense
 import { AmountType } from "../../Types/AmountVisual";
 import truckLateralItem from "../../Resources/Truck_Final_Lateral.png";
 import truckFrontItem from "../../Resources/Truck_Final_Front.png";
-import cement from "../../Resources/cement.svg";
+import cement from "../../Resources/caja@4x.png";
 import road from "../../Resources/carretera@4x.png";
 
 export type Animation = {
@@ -13,8 +13,8 @@ export type Animation = {
     amountVisual: AmountType[];
 }
 
-let x = 50;
-const y = 50;
+let x = 525;
+const y = 30;
   
 export const Animation: React.FC<Animation> = ({amountVisual}) => {
 	
@@ -103,9 +103,17 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 		
         visualObjects.amountVisual.forEach((object,i) =>{
             for (let index = 0; index < object.amount; index++) {
-                
+/*                 let posX = x+(i*70);
+				let posY = y+(index*70); */
+				let spaceX = 0;
+				spaceX = index % 3 === 0 ? 0 : spaceX+=1;
+				
+
+				let posX = (x - (spaceX*58))  + (Math.floor(index/3)*58);
+				let posY = (y+(spaceX*43)) + (Math.floor(index/3)*23);
+				
 				if(imgCement){
-					p5.image(imgCement,x+(i*50), y+(index*50),50,50);
+					p5.image(imgCement,posX,posY,70,70);
 					
 				}
 
@@ -125,18 +133,12 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 	};
 
 	const mouseClicked = (p5: p5Types) => {
-		bgPosY -= 4.8;
-		bgPosX -= 10;
-		if(bgPosX<-690){
-			bgPosX = 0;
-			bgPosY = 0;
-		}
-		
+
 	}
 
 	const moveAnimation = () => {
-		bgPosY -= 0.45;
-		bgPosX -= 0.97;
+		bgPosY -= 0.15;
+		bgPosX -= 0.323;
 		if(bgPosX<-690){
 			bgPosX = 0;
 			bgPosY = 0;
