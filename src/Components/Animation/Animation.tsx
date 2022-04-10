@@ -32,6 +32,7 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 	let imgCement : p5Types.Image ;
 	let imgTruckFront: p5Types.Image;
 	let imgRoad : p5Types.Image ;
+	let visualAmount : number ;
 
 	let bgPosX : number = 0
 	let bgPosY : number = 0
@@ -42,7 +43,30 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 		imgTruckFrontalURL = truckFrontItem;
 		imgCementURL = cement;
 		imgRoadURL = road;
-	},[amountVisual])
+		visualAmount = visuals();
+	},[amountVisual]);
+
+	const visuals = () =>{
+
+		let visualAmount = 0;
+		
+		visualObjects.amountVisual.forEach((object) =>{
+            for (let index = 0; index < object.amount; index++) {
+				if(visualAmount >141){
+					visualAmount = 141;
+				} else {
+					visualAmount += 1;
+				}
+				
+			}
+		})
+
+		
+
+		return visualAmount;
+	}
+
+
 
 	const preload = (p5: p5Types) => {
 		imgTruckLateral = p5.loadImage(truckLateralItem);
@@ -101,30 +125,31 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 		}
 
 
-		
-        visualObjects.amountVisual.forEach((object,i) =>{
-            for (let index = 0; index < object.amount; index++) {
-/*                 let posX = x+(i*70);
-				let posY = y+(index*70); */
-				let spaceX = 0;
-				spaceX = index % 3 === 0 ? 0 : spaceX+=1;
-				
+		for (let index = 0; index < visualAmount; index++) {
+			
 
-				let posX = (x - (spaceX*58))  + (Math.floor(index/3)*58);
-				let posY = (y+(spaceX*43)) + (Math.floor(index/3)*23);
-				
-				if(imgCement){
+			
+
+			let posX =  index % 20 === 0 ? (x - (2*58))  + (Math.floor(index/20)*58) : (x - (0*58))  + (Math.floor(index/20)*58);
+			let posY =  index % 10 === 0 ? (y+(0*43)) + (Math.floor(index/20)*23):(y+(1*43)) + (Math.floor(index/20)*23);
+			
+			if(imgCement){
+				if(index%10===0 && index!==0){
 					p5.image(imgCement,posX,posY,70,70);
+				}
 					
-				}
-
-				if(object.amount >10){
-					moveAnimation();
-				}
 				
-            }
+				
+			}
+
+
+		}
+
+		if(visualAmount >100){
+			moveAnimation();
+		}
+				
             
-        })
 
 		if(imgTruckFront){
 			p5.image(imgTruckFront, 850,160,380,280)
@@ -133,13 +158,10 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 		
 	};
 
-	const mouseClicked = (p5: p5Types) => {
-
-	}
 
 	const moveAnimation = () => {
-		bgPosY -= 0.139;
-		bgPosX -= 0.323;
+		bgPosY -= 2.224;
+		bgPosX -= 5.168;
 		if(bgPosX<-3000){
 			bgPosX = 0;
 			bgPosY = 0;
@@ -147,7 +169,7 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 	}
 	
 
-	return <Sketch preload={preload}setup={setup} draw={draw} mouseClicked={mouseClicked}  />;
+	return <Sketch preload={preload}setup={setup} draw={draw}   />;
 };
 
 
