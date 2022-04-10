@@ -6,7 +6,7 @@ import { AmountType } from "../../Types/AmountVisual";
 import truckLateralItem from "../../Resources/Truck_Final_Lateral.png";
 import truckFrontItem from "../../Resources/Truck_Final_Front.png";
 import cement from "../../Resources/caja@4x.png";
-import road from "../../Resources/carretera@4x.png";
+import road from "../../Resources/carretera.png";
 
 export type Animation = {
 	//Your component props
@@ -24,7 +24,8 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 	let imgTruckFrontalURL = truckFrontItem;
 	let imgCementURL = cement;
 	let imgRoadURL = road;
-	let canvas;
+	let canvas: p5Types.Element;
+	let parent: HTMLElement | null = document.querySelector('.react-p5');
 
 
 	let imgTruckLateral: p5Types.Image ;
@@ -56,9 +57,9 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 		imgRoad = p5.loadImage(imgRoadURL);
 	}
     
-	//See annotations in JS for more information
-	const setup = (p5: p5Types, canvasParentRef: Element) => {
-		canvas = p5.createCanvas(p5.windowWidth * .8,480).parent(canvasParentRef);
+	//See annotations in JS for more informatio
+	const setup = (p5: p5Types, canvasParentRef: Element ) => {
+		canvas = p5.createCanvas(parent? parent.offsetWidth : p5.windowWidth * .8,480).parent(canvasParentRef);
 		
 		console.log(imgTruckLateral);
 		console.log(imgCement);
@@ -92,7 +93,7 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 		p5.fill(255);
 
 		if(imgRoad){
-			p5.image(imgRoad,bgPosX,bgPosY, window.innerWidth * 1.6,1200);
+			p5.image(imgRoad,bgPosX,bgPosY,parent? parent.offsetWidth * 3.6 : window.innerWidth * 1.6,2400);
 		}
 
 		if(imgTruckLateral){
@@ -137,9 +138,9 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 	}
 
 	const moveAnimation = () => {
-		bgPosY -= 0.15;
+		bgPosY -= 0.139;
 		bgPosX -= 0.323;
-		if(bgPosX<-690){
+		if(bgPosX<-3000){
 			bgPosX = 0;
 			bgPosY = 0;
 		}

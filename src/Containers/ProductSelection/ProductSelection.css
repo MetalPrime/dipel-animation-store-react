@@ -12,7 +12,9 @@
     width: 100%;
     mix-blend-mode: overlay;
     background-size: cover;
-    background-color: #FFC300;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
 }
 
 .ProductSelection_filters{
@@ -25,7 +27,7 @@
 }
 
 .ProductSelection_filters_container{
-    width: 84.4%;
+    width: 100%;
     background-color: #260101;
     height: 10vh;
     display: flex;
@@ -43,6 +45,11 @@
     color: #fff;
     display:flex;
     align-items: center;
+}
+
+#defaultCanvas0{
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .ProductSelection_filter-1{
