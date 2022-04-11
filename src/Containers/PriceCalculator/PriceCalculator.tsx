@@ -15,7 +15,7 @@ interface PriceCalculator {
 export type Flete = {
     precio: string,
     tipo: string,
-    estado: string,
+    estado: "CUMPLIDO" | "NO CUMPLIDO" | "",
     condition: string,
 }
 
@@ -130,88 +130,189 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
         let totalPrice = 0;
         const sumTotalProducts = getProductWithItems(amountVisual);
         let copyArraay: AmountProduct[];
+        let copyFletes : Flete[] ;
 
         sumTotalProducts?.forEach(product => {
             switch (product.shipping_class) {
                 case 'acabados':
                     let totalPriceOfAllAcabados = getTotalPriceFromShippingClass("acabados");
-                    let fleteAcabadis: Flete = {
-                        precio: '',
-                        tipo: '',
-                        estado: '',
-                        condition: ''
-                    };
-                    fleteAcabadis.tipo = "acabados"
-                    if (totalPriceOfAllAcabados.total > 1000000) {
-                        totalPrice += 130000;
-
-                    } else {
-                        totalPrice += 1000000;
-                    }
 
                     //
                     copyArraay = amountProducts;
-                    if (amountProducts.some(item => item.type === "acabados")) {
+                    copyFletes = fletes;
+                    if (amountProducts.some(item => item.type === "acabados" )) {
 
                     } else {
+
+
+                        if(product.amount !== 0){
+                            let fleteAcabadis: Flete = {
+                                precio: '',
+                                tipo: '',
+                                estado: '',
+                                condition: ''
+                            };
+                            fleteAcabadis.tipo = "acabados";
+                            fleteAcabadis.condition = "cantidad acabados total mayor a $1000000";
+                            if (totalPriceOfAllAcabados.total > 1000000) {
+                                totalPrice += 130000;
+                                fleteAcabadis.precio = '130000';
+                                fleteAcabadis.estado = 'CUMPLIDO';
+                            } else {
+                                totalPrice += 1000000;
+                                fleteAcabadis.precio = '1000000';
+                                fleteAcabadis.estado = 'NO CUMPLIDO';
+                            }
+
+                            copyFletes.push(fleteAcabadis);
+                        }else {
+                            totalPrice +=0;
+                        }
+
+
                         copyArraay.push(totalPriceOfAllAcabados.item);
+                        
                     }
 
                     SetAmountProducts(copyArraay);
+                    SetFletes(copyFletes);
                     //
 
                     break;
                 case 'madera':
                     let totalPriceOfAllWood = getTotalPriceFromShippingClass("madera");
 
-                    if (totalPriceOfAllWood.total > 500000) {
-                        totalPrice += 80000;
-                    } else {
-                        totalPrice += 500000;
-                    }
+
+                    copyFletes = fletes;
+
+
+
+                    
+                    
+
                     copyArraay = amountProducts;
-                    if (amountProducts.some(item => item.type === "madera")) {
+                    if (amountProducts.some(item => item.type === "madera" )) {
 
                     } else {
+                        let fleteMadera: Flete = {
+                            precio: '',
+                            tipo: 'Madera',
+                            estado: '',
+                            condition: 'cantidad madera total mayor a $500000'
+                        }
+                        if(product.amount !== 0){
+                            if (totalPriceOfAllWood.total > 500000) {
+                                totalPrice += 80000;
+                                fleteMadera.precio = '80000';
+                                fleteMadera.estado = 'CUMPLIDO';
+                            } else {
+                                totalPrice += 500000;
+                                fleteMadera.precio = '500000';
+                                fleteMadera.estado = 'NO CUMPLIDO';
+                            }
+
+                            copyFletes.push(fleteMadera);
+                        }else {
+                            totalPrice +=0;
+                        }
+                       
                         copyArraay.push(totalPriceOfAllWood.item);
+                        
                     }
 
                     SetAmountProducts(copyArraay);
+                    SetFletes(copyFletes);
 
                     break;
                 case 'ladrillos':
                     let totalPriceOfAllProducts = getTotalPriceFromShippingClass("ladrillos");
 
-                    if (totalPriceOfAllProducts.total > 1500000) {
-                        totalPrice += 200000;
-                    } else {
-                        totalPrice += 1500000;
-                    }
+
+
+                    copyFletes = fletes;
+
+
+
+                    
+                    
+
                     copyArraay = amountProducts;
-                    if (amountProducts.some(item => item.type === "ladrillos")) {
+                    if (amountProducts.some(item => item.type === "ladrillos" )) {
 
                     } else {
+                        let fleteLadrillo: Flete = {
+                            precio: '',
+                            tipo: 'Ladrillos',
+                            estado: '',
+                            condition: 'cantidad ladrilos total mayor a $1500000'
+                        }
+                        if(product.amount !== 0){
+                            if (totalPriceOfAllProducts.total > 1500000) {
+                                totalPrice += 200000;
+                                fleteLadrillo.precio = '200000';
+                                fleteLadrillo.estado = 'CUMPLIDO';
+                            } else {
+                                totalPrice += 1500000;
+                                fleteLadrillo.precio = '1500000';
+                                fleteLadrillo.estado = 'NO CUMPLIDO';
+                            }
+                            copyFletes.push(fleteLadrillo);
+
+                        }else {
+                            totalPrice +=0;
+                        }
+
+                        
                         copyArraay.push(totalPriceOfAllProducts.item);
+                        
                     }
 
                     SetAmountProducts(copyArraay);
+                    SetFletes(copyFletes);
 
                     break;
                 case 'cemento':
                     let totalPriceOfAllCement = getTotalPriceFromShippingClass("cemento");
-                    if (product.amount > 50) {
-                        totalPrice += 0;
-                    } else {
-                        totalPrice += 100000
-                    }
+
+
+
+                    copyFletes = fletes;
+
+                    
+
                     copyArraay = amountProducts;
-                    if (amountProducts.some(item => item.type === "cemento")) {
+                    if (amountProducts.some(item => item.type === "cemento" )) {
 
                     } else {
+                        let fleteCemento: Flete = {
+                            precio: '',
+                            tipo: 'Cemento',
+                            estado: '',
+                            condition: 'cantidad bolsas cemento  mayor a 50'
+                        }
+                        if(product.amount !== 0){
+
+                            if (product.amount > 50) {
+                                fleteCemento.precio = '0';
+                                fleteCemento.estado = "CUMPLIDO";
+                                totalPrice += 0;
+                            } else {
+                                totalPrice += 100000;
+                                fleteCemento.precio = '100000';
+                                fleteCemento.estado = "NO CUMPLIDO"
+                            }
+                            copyFletes.push(fleteCemento);
+
+                        }else {
+                            totalPrice +=0;
+                        }
+                        
                         copyArraay.push(totalPriceOfAllCement.item);
+                        
                     }
 
                     SetAmountProducts(copyArraay);
+                    SetFletes(copyFletes);
 
                     break;
                 case 'acero':
@@ -224,21 +325,20 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
     }
 
 
-    useEffect(() => {
-
-        getTotalPriceFromCondition();
-    }, [])
-
-
     console.log({ amountProducts });
 
     const calculateFinalPrice = () => {
         if (showDistance.length > 0) {
-            setTotalPrice(getTotalPriceFromProducts(products, amountVisual) + getTotalPriceFromCondition());
-        } else {
             setTotalPrice(getTotalPriceFromProducts(products, amountVisual) + getTotalPriceFromCondition() + getTotalPriceFromTravel());
+            
+            console.log(totalPrice);
+            console.log(getTotalPriceFromProducts(products, amountVisual))
+            console.log(getTotalPriceFromCondition());
+        } else {
+            setTotalPrice(getTotalPriceFromProducts(products, amountVisual) + getTotalPriceFromCondition());
         }
     }
+    
 
     useEffect(() => {
         calculateFinalPrice();
@@ -279,9 +379,10 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                     </div>
                     {
                         fletes.length > 0 && fletes.map(flete =>
-                            <section key={flete.tipo}>
+                            <section key={flete.tipo + "_tipo"}>
                                 <p>{flete.tipo}</p>
-                                <p>Aplica: {flete.estado}</p>
+                                <p>Condición: {flete.condition}</p>
+                                <p>Estado: {flete.estado}</p>
                                 <p>Valor: {flete.precio}</p>
                             </section>
                         )
