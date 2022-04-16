@@ -121,21 +121,18 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 		}
 
 		if(imgTruckLateral){
-			p5.image(imgTruckLateral, 400,50,parent? parent.offsetWidth*0.55: 800,400);
+			p5.image(imgTruckLateral,parent? parent.offsetWidth*0.242: 400,50,parent? parent.offsetWidth*0.55: 800,400);
 		}
 		p5.text(p5.mouseX + " " + p5.mouseY, p5.mouseX, p5.mouseY);
 
 		for (let index = 0; index < visualAmount; index++) {
 			
-
-			
-
 			let posX =  index % 20 === 0 ? (x - (2*56))  + (Math.floor(index/20)*56) : (x - (0*56))  + (Math.floor(index/20)*56);
-			let posY =  index % 10 === 0 ? (y+(0*45)) + (Math.floor(index/20)*29):(y+(1*45)) + (Math.floor(index/20)*29);
+			let posY =  index % 10 === 0 ? (y+(0*40)) + (Math.floor(index/20)*23):(y+(1*40)) + (Math.floor(index/20)*23);
 			
 			if(imgCement){
 				if(index%10===0 && index!==0){
-					p5.image(imgCement,posX,posY,70,70);
+					p5.image(imgCement,parent? posX-15:posX,parent? posY+25:posY,70,70);
 				}
 					
 				
@@ -152,7 +149,7 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
             
 
 		if(imgTruckFront){
-			p5.image(imgTruckFront, 850,160,parent? parent.offsetWidth*0.28:380,280)
+			p5.image(imgTruckFront, parent? parent.offsetWidth*0.602:850,160,parent? parent.offsetWidth*0.28:380,280)
 		}
 
 		
@@ -160,8 +157,9 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 
 
 	const moveAnimation = () => {
-		bgPosY -= 2.224;
-		bgPosX -= 5.168;
+		console.log(parent!.offsetWidth*0.001473);
+		bgPosY = parent? bgPosY -= parent.offsetWidth*0.001473 : bgPosY -= 2.224;
+		bgPosX = parent? bgPosX -= parent.offsetWidth*0.002946 : bgPosX -= 5.168;
 		if(bgPosX<-3000){
 			bgPosX = 0;
 			bgPosY = 0;
