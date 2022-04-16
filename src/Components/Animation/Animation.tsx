@@ -121,17 +121,17 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 		}
 
 		if(imgTruckLateral){
-			p5.image(imgTruckLateral, 400,50,800,400);
+			p5.image(imgTruckLateral, 400,50,parent? parent.offsetWidth*0.55: 800,400);
 		}
-
+		p5.text(p5.mouseX + " " + p5.mouseY, p5.mouseX, p5.mouseY);
 
 		for (let index = 0; index < visualAmount; index++) {
 			
 
 			
 
-			let posX =  index % 20 === 0 ? (x - (2*58))  + (Math.floor(index/20)*58) : (x - (0*58))  + (Math.floor(index/20)*58);
-			let posY =  index % 10 === 0 ? (y+(0*43)) + (Math.floor(index/20)*23):(y+(1*43)) + (Math.floor(index/20)*23);
+			let posX =  index % 20 === 0 ? (x - (2*56))  + (Math.floor(index/20)*56) : (x - (0*56))  + (Math.floor(index/20)*56);
+			let posY =  index % 10 === 0 ? (y+(0*45)) + (Math.floor(index/20)*29):(y+(1*45)) + (Math.floor(index/20)*29);
 			
 			if(imgCement){
 				if(index%10===0 && index!==0){
@@ -152,7 +152,7 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
             
 
 		if(imgTruckFront){
-			p5.image(imgTruckFront, 850,160,380,280)
+			p5.image(imgTruckFront, 850,160,parent? parent.offsetWidth*0.28:380,280)
 		}
 
 		
