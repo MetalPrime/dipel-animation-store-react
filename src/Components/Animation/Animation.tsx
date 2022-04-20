@@ -132,7 +132,7 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 			
 			if(imgCement){
 				if(index%10===0 && index!==0){
-					p5.image(imgCement,parent? posX-15:posX,parent? posY+25:posY,70,70);
+					p5.image(imgCement,parent? posX-parent.offsetWidth*0.02:posX,parent? posY+parent.offsetWidth*0.015:posY,70,70);
 				}
 					
 				
