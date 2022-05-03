@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dipel-animation-store-react/static/css/main.ca7ec116.css",
-    "main.js": "/dipel-animation-store-react/static/js/main.5dd50076.js",
+    "main.css": "/dipel-animation-store-react/static/css/main.541c4bf0.css",
+    "main.js": "/dipel-animation-store-react/static/js/main.f7ec075d.js",
     "static/js/787.f88d9763.chunk.js": "/dipel-animation-store-react/static/js/787.f88d9763.chunk.js",
     "static/media/imageMapa.jpg": "/dipel-animation-store-react/static/media/imageMapa.f4844ea0a42beac5ce3d.jpg",
     "static/media/Truck_Final_Front.png": "/dipel-animation-store-react/static/media/Truck_Final_Front.b8b5926ef66f401bd8c9.png",
@@ -16,12 +16,12 @@
     "static/media/todoIcon.svg": "/dipel-animation-store-react/static/media/todoIcon.1f0cfa6da7aae79b69c8da26e9e19c94.svg",
     "static/media/cementoIcon.svg": "/dipel-animation-store-react/static/media/cementoIcon.44589a6a762c6160ca014a380cffc4d6.svg",
     "static/media/aceroIcon.svg": "/dipel-animation-store-react/static/media/aceroIcon.603bb132f048488a29f0aa4052e03712.svg",
-    "main.ca7ec116.css.map": "/dipel-animation-store-react/static/css/main.ca7ec116.css.map",
-    "main.5dd50076.js.map": "/dipel-animation-store-react/static/js/main.5dd50076.js.map",
+    "main.541c4bf0.css.map": "/dipel-animation-store-react/static/css/main.541c4bf0.css.map",
+    "main.f7ec075d.js.map": "/dipel-animation-store-react/static/js/main.f7ec075d.js.map",
     "787.f88d9763.chunk.js.map": "/dipel-animation-store-react/static/js/787.f88d9763.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ca7ec116.css",
-    "static/js/main.5dd50076.js"
+    "static/css/main.541c4bf0.css",
+    "static/js/main.f7ec075d.js"
   ]
 }
