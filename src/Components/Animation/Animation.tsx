@@ -158,9 +158,9 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 
 	const moveAnimation = () => {
 		console.log(parent!.offsetWidth*0.001473);
-		bgPosY = parent? bgPosY -= parent.offsetWidth*0.001473 : bgPosY -= 2.224;
+		bgPosY = parent? bgPosY -= parent.offsetWidth*0.00189 : bgPosY -= 2.224;
 		bgPosX = parent? bgPosX -= parent.offsetWidth*0.002946 : bgPosX -= 5.168;
-		if(bgPosX<-3000){
+		if(bgPosX<-2400){
 			bgPosX = 0;
 			bgPosY = 0;
 		}
