@@ -11,11 +11,16 @@ export const Counter: React.FC<Counter> = ({amount = 0, SetAmount}) => {
     //let [value,setValue]  = React.useState(0);
 
     const handleClick  = ((sign : string,_quantity : number = 1) => {
-        if(sign === '+'){
-            SetAmount(amount +=_quantity)
+        if(amount >-1){
+            if(sign === '+' ){
+                SetAmount(amount +=_quantity)
+            } else {
+                SetAmount(amount -=_quantity)
+            }
         } else {
-            SetAmount(amount -=_quantity)
+            amount =0;
         }
+
 
     })
 

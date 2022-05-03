@@ -13,7 +13,7 @@ export type Animation = {
     amountVisual: AmountType[];
 }
 
-let x = 525;
+let x = 350;
 const y = 30;
   
 export const Animation: React.FC<Animation> = ({amountVisual}) => {
@@ -128,7 +128,7 @@ export const Animation: React.FC<Animation> = ({amountVisual}) => {
 		for (let index = 0; index < visualAmount; index++) {
 			
 			let posX =  index % 20 === 0 ? (x - (2*56))  + (Math.floor(index/20)*56) : (x - (0*56))  + (Math.floor(index/20)*56);
-			let posY =  index % 10 === 0 ? (y+(0*40)) + (Math.floor(index/20)*23):(y+(1*40)) + (Math.floor(index/20)*23);
+			let posY =  index % 10 === 0 ? (y+(0*120)) + (Math.floor(index/20)*33): (y+(1*120)) + (Math.floor(index/20)*23);
 			
 			if(imgCement){
 				if(index%10===0 && index!==0){
