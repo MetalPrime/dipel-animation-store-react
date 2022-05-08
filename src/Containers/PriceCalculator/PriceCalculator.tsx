@@ -91,8 +91,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
 
         });
 
-        console.log(item);
-        console.log({ amountProducts })
+        
         let total = productWithPriceAndAmount.reduce((acc, current) => (current.price * current.amount) + acc, 0) as number;
         item.total = total;
         return { total, item };
@@ -102,14 +101,28 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
     const getTotalPriceFromProducts = (products: any[], amountVisual: AmountType[]) => {
         let totalVlaue = 0;
         let productsWithAmount = amountVisual.filter(product => product.amount > 0);
+        productsWithAmount.forEach(product => {
+            products.forEach(item => {
+                if(product.ID === item.id){
+                    product.price = item.price;
+                }
+            })
+        })
 
-        productsWithAmount.forEach((amount, index) => {
-            if (amount.ID === products[index].id) {
-                totalVlaue += (products[index].price * amount.amount);
-
-            }
+        console.log(productsWithAmount);
+/*         console.log(products);
+        console.log(amountVisual);
+        let productsInfo = products.filter((product,index) => product.id === amountVisual[index].ID);
+        console.log(productsInfo)
+        console.log(productsWithAmount); */
+        productsWithAmount.forEach((product, index) => {
+            
+                totalVlaue += (product.price! * productsWithAmount[index].amount);
+                console.log(totalVlaue);
+            
 
         })
+        console.log(totalVlaue)
         return totalVlaue;
     }
 

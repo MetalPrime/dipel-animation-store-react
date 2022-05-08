@@ -28,7 +28,7 @@ export const Product : React.FC<Product> = ({ name, img, type, value,weight, id,
         if(amountVisual.some(amount => amount.ID === id)){
 
         } else{
-            setAmountVisual(amountVisual => [...amountVisual,{ID: id,amount:amount,shipping_class:shipping_class}]);
+            setAmountVisual(amountVisual => [...amountVisual,{ID: id,amount:amount,shipping_class:shipping_class,price:undefined}]);
             
         }
         

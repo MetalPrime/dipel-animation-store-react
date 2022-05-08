@@ -36,7 +36,7 @@
 }
 
 .ProductSelection_filter{
-    width: 160px;
+    width: 15%;
     height: 70%;
     background-color: #4E4848;
     border-radius: 7.53333px;
@@ -81,6 +81,10 @@
 
 }
 
+.ProductSelection_filter_text{
+    margin-left: 5px;
+}
+
 .ProductSelection_products{
     width: 100vw;
     display: flex;
@@ -96,7 +100,7 @@
     bottom: 0;
     width: 100%;
     height:10vh;
-    background: linear-gradient(360deg, #4E4848 0%, rgba(78, 72, 72, 0) 96.4%, rgba(78, 72, 72, 0) 201.27%);
+    /* background: linear-gradient(360deg, #4E4848 0%, rgba(78, 72, 72, 0) 96.4%, rgba(78, 72, 72, 0) 201.27%); */
 }
 
 .Calculate button{
