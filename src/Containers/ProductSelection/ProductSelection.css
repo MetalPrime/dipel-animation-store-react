@@ -15,15 +15,18 @@
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .ProductSelection_filters{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding:0 2% 2% 2% ;
-    
-    
+    width: -webkit-fill-available;
+    padding:0 0 0 2% ;
+    margin-right: 2%;
+    position:absolute;
+    bottom:0;
 }
 
 .ProductSelection_filters_container{
@@ -33,6 +36,10 @@
     display: flex;
     justify-content:space-around;
     align-items:center;
+}
+
+.ProductSelection_filters_container--1{
+    height: 6vh;
 }
 
 .ProductSelection_filter{
@@ -67,6 +74,10 @@
 .ProductSelection_filter-1 img{
     filter: invert(1);
     
+}
+
+.ProductSelection_filter_title{
+    color: #fff;
 }
 
 .ProductSelection_filter:hover{
