@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { MapDistance } from '../../Components/MapDistance/MapDistance';
 import { AmountType } from '../../Types/AmountVisual';
 import { Direction } from '../../Types/Direction';
+import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
+
 
 import './PriceCalculator.css';
 
@@ -359,6 +361,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
 
     }, [showDistance])
 
+
     return (
         <section className='PriceCalculator'>
             {scriptLoaded && (<MapDistance totalProducts={getProductWithItems(amountVisual) || []} showDistance={showDistance} setShowDistance={setShowDistance}></MapDistance>)}
@@ -425,7 +428,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                 </section>
 
             </article>
-
+            
         </section>
     );
 }

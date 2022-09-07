@@ -2,8 +2,8 @@ import * as React from 'react';
 import './ProductSelection.css';
 import { Animation } from '../../Components/Animation/Animation';
 import { Product } from '../../Components/Product/Product';
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 import imgBackground from '../../Resources/backAnimation.jpg';
+import imgNoFound from '../../Resources/No-Photo-Available.jpg';
 
 import { AmountType } from '../../Types/AmountVisual';
 import { Link } from 'react-router-dom';
@@ -82,8 +82,9 @@ export const ProductSelection: React.FC<ProductSelection> = ({ scriptLoaded, amo
             swipeable
         >
             {
+                
                 scriptLoaded && copyProducts.map(product => {
-                    return <Product name={product.name} img={product.images[0].src} type={product.type} value={product.price} weight={product.weight} key={product.id} amountVisual={amountVisual} setAmountVisual={setAmountVisual} id={product.id} shipping_class={product.shipping_class} price={product.price}></Product>
+                    return <Product name={product.name} img={product.images.length? product.images[0].src: imgNoFound} type={product.type} value={product.price} weight={product.weight} key={product.id} amountVisual={amountVisual} setAmountVisual={setAmountVisual} id={product.id} shipping_class={product.shipping_class} price={product.price}></Product>
                 })
             }
         </Carousel>

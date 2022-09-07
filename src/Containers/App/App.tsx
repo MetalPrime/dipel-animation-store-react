@@ -3,9 +3,10 @@ import './App.css';
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 import { loadMapApi } from '../../Utils/GoogleMapsUtils';
 import { AmountType } from '../../Types/AmountVisual';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { ProductSelection } from '../ProductSelection/ProductSelection';
 import { PriceCalculator } from '../PriceCalculator/PriceCalculator';
+import { ProductCheckout } from '../ProductCheckout/ProductCheckout';
 
 const api = new WooCommerceRestApi({
   url: process.env.REACT_APP_WOOCOMMERCE_LINK || "",
@@ -20,7 +21,7 @@ function App() {
   const [products, setProducts] = useState<any[]>([]);
   const [amountVisual, setAmountVisual] = useState<AmountType[]>([]);
 
-  let fetchOrders = () => {
+  let fetchOrders = async () => {
     api
       .get("products", {
         per_page: 20,
@@ -60,6 +61,10 @@ function App() {
         </Route>
         <Route path="/calculate" element={<PriceCalculator scriptLoaded={scriptLoaded} products={products} amountVisual={amountVisual} ></PriceCalculator>}>
           
+        </Route>
+
+        <Route path="/checkout" element={<ProductCheckout api={api}></ProductCheckout>}>
+
         </Route>
       </Routes>
 

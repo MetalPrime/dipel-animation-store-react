@@ -8,7 +8,7 @@ import { AmountType } from '../../Types/AmountVisual';
 
 export type Product = {
     name: string;
-    img: string;
+    img: string | undefined;
     type: string;
     value: string;
     weight: number;
@@ -19,7 +19,7 @@ export type Product = {
     setAmountVisual: React.Dispatch<React.SetStateAction<AmountType[]>>;
 }
 
-export const Product : React.FC<Product> = ({ name, img, type, value,weight, id,amountVisual, setAmountVisual,shipping_class, price}) =>{
+export const Product : React.FC<Product> = ({ name, img , type, value,weight, id,amountVisual, setAmountVisual,shipping_class, price}) =>{
     const [amount,SetAmount] = useState<number>(0);
 
 

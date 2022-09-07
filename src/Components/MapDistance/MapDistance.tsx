@@ -5,6 +5,7 @@ import Geocode from "react-geocode";
 import { AmountType } from '../../Types/AmountVisual';
 import { Direction } from '../../Types/Direction';
 import imageMapa from '../../Resources/imageMapa.jpg';
+import { Link } from 'react-router-dom';
 
 
 export type MapDistance = {
@@ -127,7 +128,7 @@ export const MapDistance: React.FC<MapDistance> = ({ totalProducts, showDistance
       <section  className="PriceCalculator__Searchform">
         <form onSubmit={handleSubmitted}>
           <input placeholder="Dirección" type="text" className='="Destino' id="Destino"></input>
-          <button type="submit" >Buscar</button>
+          <button type="submit" ><Link to={`/checkout`}>Buscar</Link></button>
           <p>*Aplica sólo para municipios alrededor de Cali, Valle del Cauca</p>
         </form>
       </section>

@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/dipel-animation-store-react/static/css/main.50f7998d.css",
-    "main.js": "/dipel-animation-store-react/static/js/main.284cf483.js",
-    "static/js/787.f88d9763.chunk.js": "/dipel-animation-store-react/static/js/787.f88d9763.chunk.js",
+    "main.css": "/dipel-animation-store-react/static/css/main.5aa4c259.css",
+    "main.js": "/dipel-animation-store-react/static/js/main.6e0f1b9c.js",
+    "static/js/988.ed1a6952.chunk.js": "/dipel-animation-store-react/static/js/988.ed1a6952.chunk.js",
     "static/media/imageMapa.jpg": "/dipel-animation-store-react/static/media/imageMapa.f4844ea0a42beac5ce3d.jpg",
     "static/media/Truck_Final_Front.png": "/dipel-animation-store-react/static/media/Truck_Final_Front.b8b5926ef66f401bd8c9.png",
     "static/media/Truck_Final_Lateral.png": "/dipel-animation-store-react/static/media/Truck_Final_Lateral.d88156dd493e7c26b8a6.png",
@@ -16,12 +16,12 @@
     "static/media/todoIcon.svg": "/dipel-animation-store-react/static/media/todoIcon.1f0cfa6da7aae79b69c8da26e9e19c94.svg",
     "static/media/cementoIcon.svg": "/dipel-animation-store-react/static/media/cementoIcon.44589a6a762c6160ca014a380cffc4d6.svg",
     "static/media/aceroIcon.svg": "/dipel-animation-store-react/static/media/aceroIcon.603bb132f048488a29f0aa4052e03712.svg",
-    "main.50f7998d.css.map": "/dipel-animation-store-react/static/css/main.50f7998d.css.map",
-    "main.284cf483.js.map": "/dipel-animation-store-react/static/js/main.284cf483.js.map",
-    "787.f88d9763.chunk.js.map": "/dipel-animation-store-react/static/js/787.f88d9763.chunk.js.map"
+    "main.5aa4c259.css.map": "/dipel-animation-store-react/static/css/main.5aa4c259.css.map",
+    "main.6e0f1b9c.js.map": "/dipel-animation-store-react/static/js/main.6e0f1b9c.js.map",
+    "988.ed1a6952.chunk.js.map": "/dipel-animation-store-react/static/js/988.ed1a6952.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.50f7998d.css",
-    "static/js/main.284cf483.js"
+    "static/css/main.5aa4c259.css",
+    "static/js/main.6e0f1b9c.js"
   ]
 }
