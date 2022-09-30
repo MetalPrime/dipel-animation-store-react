@@ -10,7 +10,7 @@ import truckFrontItem from "../../Resources/Truck_Final_Front.png";
 import cement from "../../Resources/caja@4x.png";
 import road from "../../Resources/carretera.png";
 
-export type Animation = {
+export type IAnimation = {
 	//Your component props
     amountVisual: AmountType[];
 }
@@ -18,7 +18,7 @@ export type Animation = {
 let x = 350;
 const y = 30;
   
-export const Animation: React.FC<Animation> = ({amountVisual}) => {
+export const Animation: React.FC<IAnimation> = ({amountVisual}) => {
 	
 	let visualObjects = {amountVisual};
 

@@ -2,7 +2,6 @@ import * as React from 'react';
 import './ProductSelection.css';
 import { Animation } from '../../Components/Animation/Animation';
 import { Product } from '../../Components/Product/Product';
-import imgBackground from '../../Resources/backAnimation.jpg';
 import imgNoFound from '../../Resources/No-Photo-Available.jpg';
 
 import { AmountType } from '../../Types/AmountVisual';
@@ -10,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import { Filter } from '../../Components/Filter/Filter';
+import { Animation2 } from '../../Components/Animation/Animation2';
 
 export type ProductSelection = {
     scriptLoaded: boolean,
@@ -24,77 +24,29 @@ export const ProductSelection: React.FC<ProductSelection> = ({ scriptLoaded, amo
 
     useEffect(() => {
         setCopyProducts(products);
-    }, [products]);    
+    }, [products]);
 
     return <section className="ProductSelection">
         <article className="ProductSelection_animation" >
-            {scriptLoaded && <Animation amountVisual={amountVisual}></Animation>}
-            {scriptLoaded && <Filter products={products} setCopyProducts={setCopyProducts}></Filter>
-            }
+            {scriptLoaded && <Animation2></Animation2>}
+
         </article>
-        <Carousel
-            additionalTransfrom={0}
-            arrows
-            
-            autoPlay
-            autoPlaySpeed={5000}
-            centerMode={true}
-            className=""
-            containerClass="container-with-dots prueba_container"
-            dotListClass=""
-            draggable
-            focusOnSelect={false}
-            infinite
-            itemClass=""
-            keyBoardControl
-            minimumTouchDrag={80}
-            renderButtonGroupOutside={false}
-            renderDotsOutside={false}
-            responsive={{
-                desktop: {
-                    breakpoint: {
-                        max: 3000,
-                        min: 1024
-                    },
-                    items: 3,
-                    partialVisibilityGutter: 0
-                },
-                mobile: {
-                    breakpoint: {
-                        max: 464,
-                        min: 0
-                    },
-                    items: 1,
-                    partialVisibilityGutter: 30
-                },
-                tablet: {
-                    breakpoint: {
-                        max: 1024,
-                        min: 464
-                    },
-                    items: 2,
-                    partialVisibilityGutter: 30
-                }
-            }}
-            showDots={true}
-            sliderClass="prueba"
-            slidesToSlide={1}
-            swipeable
-        >
-            {
-                
-                scriptLoaded && copyProducts.map(product => {
-                    return <Product name={product.name} img={product.images.length? product.images[0].src: imgNoFound} type={product.type} value={product.price} weight={product.weight} key={product.id} amountVisual={amountVisual} setAmountVisual={setAmountVisual} id={product.id} shipping_class={product.shipping_class} price={product.price}></Product>
-                })
-            }
-        </Carousel>
+
         <article className="ProductSelection_products">
+            <section className="ProductSelection_editOptions">
+                {scriptLoaded && <Filter products={products} setCopyProducts={setCopyProducts}></Filter>}
+            </section>
+            <section className="ProductSelection_productsOptions">
+                <section className="ProductSelection_productsOptions_scroll">
+                    {scriptLoaded && copyProducts.map(product => {
+                        return <Product name={product.name} img={product.images.length ? product.images[0].src : imgNoFound} type={product.type} value={product.price} weight={product.weight} key={product.id} amountVisual={amountVisual} setAmountVisual={setAmountVisual} id={product.id} shipping_class={product.shipping_class} price={product.price}></Product>
+                    })}
+                </section>
+            </section>
+
 
         </article>
 
-        <article className="Calculate">
-            <button><Link to={`/calculate`}>Continuar con la compra</Link></button>
-        </article>
 
     </section>
 }

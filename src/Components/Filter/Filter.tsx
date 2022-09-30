@@ -6,19 +6,25 @@ import aceroIcon from '../../Resources/aceroIcon.svg';
 import cementoIcon from '../../Resources/cementoIcon.svg';
 import ladrillosIcon from '../../Resources/ladrillosIcon.svg';
 import maderaIcon from '../../Resources/maderaIcon.svg';
+import shoppingIcon from '../../Resources/shopping-cart.svg';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Select, MenuItem, SelectChangeEvent, InputLabel } from '@mui/material';
 
-interface Filter {
+interface IFilter {
     products: any[],
     setCopyProducts: React.Dispatch<React.SetStateAction<any[]>>
 
 }
 
-export const Filter: React.FC<Filter> = ({products,setCopyProducts}) => {
+export const Filter: React.FC<IFilter> = ({ products, setCopyProducts }) => {
 
     let [isSelected, setIsSelected] = useState<"todos" | "cemento" | "acabados" | "madera" | "acero" | "ladrillos">("todos");
-    let [isActive, setIsActive] = useState<boolean>(false);
 
+    const [price, setPrice] = React.useState('');
+    const handleChangePrice = (event: SelectChangeEvent) => {
+        setPrice(event.target.value as string);
+      };
 
     const handleFilter = (productItem: "todos" | "cemento" | "acabados" | "madera" | "acero" | "ladrillos") => {
         let productsCopy = [...products];
@@ -37,61 +43,79 @@ export const Filter: React.FC<Filter> = ({products,setCopyProducts}) => {
 
     }
 
-    const handleDisplay = () => {
-        if(isActive){
-            setIsActive(false);
-        }  else {
-            setIsActive(true);
-        }
-    }
-
-    return (
-        <section className="ProductSelection_filters" onClick={handleDisplay}>
-            { isActive && <div className="ProductSelection_filters_container">
-                <button className={isSelected === "todos" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
-                    handleFilter("todos");
-                }}>
-                    <img src={todoIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
-                    <p className="ProductSelection_filter_text">Todos</p>
-                </button>
-                <button className={isSelected === "acero" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
-                    handleFilter("acero");
-                }}>
-                    <img src={aceroIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
-                    <p className="ProductSelection_filter_text">Acero</p>
-                </button>
-                <button className={isSelected === "ladrillos" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
-                    handleFilter("ladrillos");
-                }}>
-                    <img src={ladrillosIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
-                    <p className="ProductSelection_filter_text">Ladrillos</p>
-                </button>
-                <button className={isSelected === "madera" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
-                    handleFilter("madera");
-                }}>
-                    <img src={maderaIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
-                    <p className="ProductSelection_filter_text">Madera</p>
-                </button>
-                <button className={isSelected === "acabados" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
-                    handleFilter("acabados");
-                }}>
-                    <img src={acabadosIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
-                    <p className="ProductSelection_filter_text">Acabados</p>
-                </button>
-                <button className={isSelected === "cemento" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
-                    handleFilter("cemento");
-                }}>
-                    <img src={cementoIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
-                    <p className="ProductSelection_filter_text">Cemento</p>
-                </button>
-            </div>}
-            {
-                !isActive && <div className="ProductSelection_filters_container ProductSelection_filters_container--1">
-                    <h1 className="ProductSelection_filter_title">Filtros</h1>
-                </div>
-            }
-            
-
+    return <section className="ProductSelection_options">
+        <section className="ProductSelection_filters_resume">
+            <article>
+                <label>Order by price</label>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={price}
+                    label="Order by price"
+                    onChange={handleChangePrice}
+                    sx={{padding: "0.25rem", marginRight: "1rem", minWidth: "50px"}}
+                >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+                <label>Order by available</label>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={"Price"}
+                    label="Price"
+                    sx={{padding: "0.25rem"}}
+                >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+            </article>
+            <Link to={`/calculate`}><button className='btn_calculate'><img src={shoppingIcon} alt={"cart_icon"} /><p>Continuar con la compra</p></button></Link>
         </section>
-    );
+
+        <section className="ProductSelection_filters_container">
+            <button className={isSelected === "todos" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
+                handleFilter("todos");
+            }}>
+                <img src={todoIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
+                <p className="ProductSelection_filter_text">Todos</p>
+            </button>
+            <button className={isSelected === "acero" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
+                handleFilter("acero");
+            }}>
+                <img src={aceroIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
+                <p className="ProductSelection_filter_text">Acero</p>
+            </button>
+            <button className={isSelected === "ladrillos" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
+                handleFilter("ladrillos");
+            }}>
+                <img src={ladrillosIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
+                <p className="ProductSelection_filter_text">Ladrillos</p>
+            </button>
+            <button className={isSelected === "madera" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
+                handleFilter("madera");
+            }}>
+                <img src={maderaIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
+                <p className="ProductSelection_filter_text">Madera</p>
+            </button>
+            <button className={isSelected === "acabados" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
+                handleFilter("acabados");
+            }}>
+                <img src={acabadosIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
+                <p className="ProductSelection_filter_text">Acabados</p>
+            </button>
+            <button className={isSelected === "cemento" ? "ProductSelection_filter  ProductSelection_filter-1 " : "ProductSelection_filter"} onClick={() => {
+                handleFilter("cemento");
+            }}>
+                <img src={cementoIcon} alt="img_filter_btn" className="ProductSelection_filter_img" />
+                <p className="ProductSelection_filter_text">Cemento</p>
+            </button>
+        </section>
+
+
+
+    </section>
+
 }
