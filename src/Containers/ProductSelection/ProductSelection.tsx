@@ -11,14 +11,14 @@ import Carousel from 'react-multi-carousel';
 import { Filter } from '../../Components/Filter/Filter';
 import { Animation2 } from '../../Components/Animation/Animation2';
 
-export type ProductSelection = {
+export type IProductSelection = {
     scriptLoaded: boolean,
     amountVisual: AmountType[],
     products: any[],
     setAmountVisual: React.Dispatch<React.SetStateAction<AmountType[]>>
 }
 
-export const ProductSelection: React.FC<ProductSelection> = ({ scriptLoaded, amountVisual, products, setAmountVisual }) => {
+export const ProductSelection: React.FC<IProductSelection> = ({ scriptLoaded, amountVisual, products, setAmountVisual }) => {
 
     let [copyProducts, setCopyProducts] = useState(Array.from(products));
 
@@ -28,7 +28,7 @@ export const ProductSelection: React.FC<ProductSelection> = ({ scriptLoaded, amo
 
     return <section className="ProductSelection">
         <article className="ProductSelection_animation" >
-            {scriptLoaded && <Animation2></Animation2>}
+            {scriptLoaded && <Animation2 amountVisual={amountVisual}></Animation2>}
 
         </article>
 

@@ -48,12 +48,12 @@ export const Filter: React.FC<IFilter> = ({ products, setCopyProducts }) => {
             <article>
                 <label>Order by price</label>
                 <Select
+                    size='small'
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={price}
-                    label="Order by price"
                     onChange={handleChangePrice}
-                    sx={{padding: "0.25rem", marginRight: "1rem", minWidth: "50px"}}
+                    sx={{paddingTop: "0", paddingBottom: "0", marginRight: "1rem", marginLeft: "0.5rem", minWidth: "100px"}}
                 >
                     <MenuItem value={10}>Ten</MenuItem>
                     <MenuItem value={20}>Twenty</MenuItem>
@@ -61,11 +61,11 @@ export const Filter: React.FC<IFilter> = ({ products, setCopyProducts }) => {
                 </Select>
                 <label>Order by available</label>
                 <Select
+                    size='small'
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={"Price"}
-                    label="Price"
-                    sx={{padding: "0.25rem"}}
+                    sx={{paddingTop: "0", paddingBottom: "0", minWidth: "100px", marginLeft: "0.5rem", marginRight: "1rem" }}
                 >
                     <MenuItem value={10}>Ten</MenuItem>
                     <MenuItem value={20}>Twenty</MenuItem>
