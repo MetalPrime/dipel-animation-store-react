@@ -13,7 +13,7 @@ Animation2 {
     padding: 3em;
     position: absolute;
     top: 50%;
-    transform: perspective(500px) rotateX(45deg) rotateZ(45deg);
+    transform: perspective(500px) rotateX(45deg) rotateZ(45deg) !important;
     transform-style: preserve-3d;
     transition: 1s;
     width: 9em;

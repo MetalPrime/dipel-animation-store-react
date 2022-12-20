@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from '../Input/Input';
 import './MapDistance.css';
 import Geocode from "react-geocode";
@@ -6,16 +6,27 @@ import { AmountType } from '../../Types/AmountVisual';
 import { Direction } from '../../Types/Direction';
 import imageMapa from '../../Resources/imageMapa.jpg';
 import { Link } from 'react-router-dom';
+//import the necessary modules
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Icon, icon, latLng } from 'leaflet';
 
-
-export type MapDistance = {
+export type IMapDistance = {
   totalProducts: AmountType[];
   showDistance: Direction[];
   setShowDistance: React.Dispatch<React.SetStateAction<Direction[]>>;
 }
 
 
-export const MapDistance: React.FC<MapDistance> = ({ totalProducts, showDistance, setShowDistance }) => {
+export const MapDistance: React.FC<IMapDistance> = ({ totalProducts, showDistance, setShowDistance }) => {
+  const [isLoad, setLoad] = useState(false);
+
+  const [markerDirection, setMarkerDirection] = useState<[number, number]>();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoad(true);
+    }, 500);
+  }, []);
 
   const service = new google.maps.DistanceMatrixService();
   console.log(totalProducts);
@@ -51,9 +62,10 @@ export const MapDistance: React.FC<MapDistance> = ({ totalProducts, showDistance
     Geocode.fromAddress(event.target.Destino.value + ", Valle del Cauca, Colombia").then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
+        setMarkerDirection([lat, lng])
         getLocationsNecessary({ lat, lng }, setShowDistance);
         //setShowDistance(returnDistance(lat, lng)+"");
-        console.log(showDistance);
+        console.log(lat + " " + lng);
       },
       (error) => {
         console.error(error);
@@ -68,19 +80,19 @@ export const MapDistance: React.FC<MapDistance> = ({ totalProducts, showDistance
     ItemsWithAmount.forEach(item => {
       switch (item.shipping_class) {
         case 'acabados':
-          returnDistance(acopiLocation, destination, callback, 'acabados', 'Acopi');
+          returnDistanceTwo(acopiLocation, destination, callback, 'acabados', 'Acopi');
           break;
         case 'madera':
-          returnDistance(barrioObreroLocation, destination, callback, 'madera', 'Barrio Obrero');
+          returnDistanceTwo(barrioObreroLocation, destination, callback, 'madera', 'Barrio Obrero');
           break;
         case 'ladrillos':
-          returnDistance(santanderDeQuilichaoLocation, destination, callback, 'ladrillos', 'Santander De Quilichao');
+          returnDistanceTwo(santanderDeQuilichaoLocation, destination, callback, 'ladrillos', 'Santander De Quilichao');
           break;
         case 'cemento':
-          returnDistance(acopiLocation, destination, callback, 'cemento', 'Acopi');
+          returnDistanceTwo(acopiLocation, destination, callback, 'cemento', 'Acopi');
           break;
         case 'acero':
-          returnDistance(acopiLocation, destination, callback, 'acero', 'Acopi');
+          returnDistanceTwo(acopiLocation, destination, callback, 'acero', 'Acopi');
 
           break;
 
@@ -90,6 +102,7 @@ export const MapDistance: React.FC<MapDistance> = ({ totalProducts, showDistance
   }
 
   const returnDistance = (origin: { lat: any, lng: any }, destination: { lat: any, lng: any }, callback: React.Dispatch<React.SetStateAction<Direction[]>>, shipping_class: string, place: string) => {
+    //Código para obtener la localización con Google Maps API, no está bien
     const originLocation = new google.maps.LatLng(origin.lat, origin.lng);
     const destinationLocation = new google.maps.LatLng(destination.lat, destination.lng);
     const request = {
@@ -104,7 +117,7 @@ export const MapDistance: React.FC<MapDistance> = ({ totalProducts, showDistance
 
     service.getDistanceMatrix(request, (res, status) => {
       console.log(res, status);
-      //callback(showDistance => [...showDistance,{distance: res!.rows[0]!.elements[0]?.distance?.text]!});
+
       const obj: Direction = {
         place: place,
         duration: res!.rows[0]!.elements[0]?.duration?.text!,
@@ -115,20 +128,61 @@ export const MapDistance: React.FC<MapDistance> = ({ totalProducts, showDistance
 
       callback(showDistance => [...showDistance, obj])
     });
-    /* const finalDistance = Math.round(distanceInMeters/1000);
-    return finalDistance; */
+  }
+
+  const returnDistanceTwo = (origin: { lat: any, lng: any }, destination: { lat: any, lng: any }, callback: React.Dispatch<React.SetStateAction<Direction[]>>, shipping_class: string, place: string) => {
+    //Porque no uso un API, no esta en el presupuesto. Toca usar las maths, si llega a haber presupuesto incluyan Google Maps API o TimeTravel.docs
+    let from = latLng(origin.lat, origin.lng);
+    let to = latLng(destination.lat, destination.lng);
+    const distance = Number.parseInt(from.distanceTo(to).toFixed(0)) / 1000; //hasta aqui la distancia es en metros
+    const intervalDuration = (distance / 60) * 60; //estamos asumiendo que son 60km.h para que nos quede el tiempo en horas -- OPTIMIZAR
+
+    const obj: Direction = {
+      place: place,
+      duration: intervalDuration + " minutos apróximadamente",
+      distance: distance + "km",
+      shipping_class: shipping_class
+    }
+    callback(showDistance => [...showDistance, obj])
   }
 
   console.log(showDistance);
 
+  const MyMap = () => {
+    //use state to store the map center and marker location
+    const [center, setCenter] = useState<[number, number]>([3.5021583, -76.5638021]);
+    const [marker, setMarker] = useState<[number, number]>([3.5021583, -76.5638021]);
+
+    return (
+      <MapContainer center={center} zoom={11} scrollWheelZoom={false} id="map" className='PriceCalculator__Map'>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+        <Marker position={marker} draggable={true} interactive={true}>
+          <Popup>
+            <p>Localización de la empresa</p>
+          </Popup>
+        </Marker>
+        {
+          markerDirection !== undefined ? <Marker position={markerDirection} draggable={false} interactive={true} >
+            <Popup>
+              <p>Mi dirección</p>
+            </Popup>
+          </Marker> : <></>
+        }
+      </MapContainer >
+    );
+  }
+
   return <section className="PriceCalculator__Search">
-    <img src={imageMapa} id="map" className='PriceCalculator__Map'></img>
+    {isLoad && <MyMap ></MyMap>}
     <article className="PriceCalculator__Searchinfo">
       <h1>Escribe tu domicilio para calcular el costo con el envio</h1>
-      <section  className="PriceCalculator__Searchform">
+      <section className="PriceCalculator__Searchform">
         <form onSubmit={handleSubmitted}>
           <input placeholder="Dirección" type="text" className='="Destino' id="Destino"></input>
-          <button type="submit" ><Link to={`/checkout`}>Buscar</Link></button>
+          <button type="submit" >Buscar</button>
           <p>*Aplica sólo para municipios alrededor de Cali, Valle del Cauca</p>
         </form>
       </section>
@@ -137,5 +191,3 @@ export const MapDistance: React.FC<MapDistance> = ({ totalProducts, showDistance
 
   </section>
 }
-
-

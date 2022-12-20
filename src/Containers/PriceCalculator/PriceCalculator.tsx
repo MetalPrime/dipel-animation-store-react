@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react';
 import { MapDistance } from '../../Components/MapDistance/MapDistance';
 import { AmountType } from '../../Types/AmountVisual';
 import { Direction } from '../../Types/Direction';
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
-
+import shoppingIcon from '../../Resources/shopping-cart.svg';
 
 import './PriceCalculator.css';
+import { List } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 interface PriceCalculator {
     scriptLoaded: boolean;
@@ -367,7 +368,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
             {scriptLoaded && (<MapDistance totalProducts={getProductWithItems(amountVisual) || []} showDistance={showDistance} setShowDistance={setShowDistance}></MapDistance>)}
             <article className="PriceCalculator__Prices">
 
-                <article className="PriceCalculator__Price">
+                <List sx={{ maxHeight: '100%', overflow: 'auto' }} className="PriceCalculator__Price">
                     <h2>Total de precio de productos</h2>
                     <div className="PriceCalculator__Price__section">
                         <p className="PriceCalculator__Price__names">Nombre</p>
@@ -387,8 +388,8 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                             </section>
                         ))
                     }
-                </article>
-                <article className="PriceCalculator__Price">
+                </List>
+                <List sx={{ maxHeight: '100%', overflow: 'auto' }} className="PriceCalculator__Price">
                     <h2>Total de precio de fletes</h2>
                     <div>
 
@@ -403,8 +404,8 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                             </section>
                         )
                     }
-                </article>
-                <article className="PriceCalculator__Price">
+                </List>
+                <List sx={{ maxHeight: '100%', overflow: 'auto' }} className="PriceCalculator__Price">
                     <h2>Total de precio de transporte</h2>
                     {showDistance.length > 0 && showDistance.map((d) =>
 
@@ -417,7 +418,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                             <p>Total: {getTotalPriceFromTravel()}</p>
                         </section>
                     )}
-                </article>
+                </List>
 
 
             </article>
@@ -425,6 +426,7 @@ export const PriceCalculator: React.FC<PriceCalculator> = ({ scriptLoaded, produ
                 <section className="PriceCalculator__Total"> 
                     <p>Precio Total:</p>
                     <h2>{totalPrice}</h2>
+                    <Link to={`/checkout`}><button className='btn_calculate'><img src={shoppingIcon} alt={"cart_icon"} /><p>Continuar con la compra</p></button></Link>
                 </section>
 
             </article>

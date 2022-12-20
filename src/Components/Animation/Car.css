@@ -1,0 +1,676 @@
+/* /!\ You need to add vendor prefixes in order to render the CSS properly (or simply use http://leaverou.github.io/prefixfree/) /!\ */ #tridiv {
+    perspective: 800px;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    font-size: 175%;
+  }
+  .face {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.32);
+  }
+  .scene, .shape, .face, .face-wrapper, .cr {
+    position: absolute;
+    transform-style: preserve-3d;
+  }
+  .scene {
+    width: 80em;
+    height: 80em;
+    top: 50%;
+    left: 50%;
+    margin: -40em 0 0 -40em;
+  }
+  .shape {
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-origin: 50%;
+  }
+  .face, .face-wrapper {
+    overflow: hidden;
+    transform-origin: 0 0;
+    backface-visibility: hidden;
+    /* hidden by default, prevent blinking and other weird rendering glitchs */
+  }
+  .face {
+    background-size: 100% 100%!important;
+    background-position: center;
+  }
+  .face-wrapper .face {
+    left: 100%;
+    width: 100%;
+    height: 100%
+  }
+  .photon-shader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+  }
+  .side {
+    left: 50%;
+  }
+  .cr, .cr .side {
+    height: 100%;
+  }
+  [class*="cuboid"] .ft, [class*="cuboid"] .bk {
+    width: 100%;
+    height: 100%;
+  }
+  [class*="cuboid"] .bk {
+    left: 100%;
+  }
+  [class*="cuboid"] .rt {
+    transform: rotateY(-90deg) translateX(-50%);
+  }
+  [class*="cuboid"] .lt {
+    transform: rotateY(90deg) translateX(-50%);
+  }
+  [class*="cuboid"] .tp {
+    transform: rotateX(90deg) translateY(-50%);
+  }
+  [class*="cuboid"] .bm {
+    transform: rotateX(-90deg) translateY(-50%);
+  }
+  [class*="cuboid"] .lt {
+    left: 100%;
+  }
+  [class*="cuboid"] .bm {
+    top: 100%;
+  }
+  [class*="prism"] .ft, [class*="prism"] .bk {
+    width: 100%;
+    height: 100%;
+  }
+  [class*="prism"] .bk {
+    left: 100%;
+  }
+  [class*="prism"] .rt {
+    transform: rotateY(-90deg) translateX(-50%);
+  }
+  [class*="prism"] .lt {
+    transform: rotateY(90deg) translateX(-50%);
+  }
+  [class*="prism"] .bm {
+    transform: rotateX(-90deg) translateY(-50%);
+  }
+  [class*="prism"] .lt {
+    left: 100%;
+  }
+  [class*="prism"] .bm {
+    top: 100%;
+  }
+  [class*="prism"] .rt .face {
+    left: -100%;
+    transform-origin: 100% 0;
+  }
+  [class*="cylinder"] .tp {
+    transform: rotateX(90deg) translateY(-50%);
+  }
+  [class*="cylinder"] .bm {
+    transform: rotateX(-90deg) translateY(-50%);
+  }
+  [class*="cylinder"] .tp, [class*="cylinder"] .bm, [class*="cylinder"] .tp .photon-shader, [class*="cylinder"] .bm .photon-shader {
+    border-radius: 50%;
+  }
+  [class*="cylinder"] .bm {
+    top: 100%;
+  }
+  /* .frente styles */
+  .frente {
+    transform:translate3D(0.7187499999999996em, 1.4958333333333336em, 8.275em) rotateX(-20deg) rotateY(0deg) rotateZ(29deg);
+    opacity:1;
+    width:6em;
+    height:5em;
+    margin:-2.5em 0 0 -3em;
+  }
+  .frente .ft {
+    transform:translateZ(1.5em);
+  }
+  .frente .bk {
+    transform:translateZ(-1.5em) rotateY(180deg);
+  }
+  .frente .rt, .frente .lt {
+    width:3em;
+    height:5em;
+  }
+  .frente .tp, .frente .bm {
+    width:6em;
+    height:3em;
+  }
+  .frente .face {
+    background-color:#FFFFFF;
+  }
+  .frente .ft {
+    background:url(https://www.linkpicture.com/q/parte-frontal.png);
+  }
+  .frente .tp {
+    background-color:#701f1f;
+  }
+  .frente .lt {
+    background:url(https://www.linkpicture.com/q/puerta-derecha.png) #713d3d;
+  }
+  .frente .rt {
+    background:url(https://www.linkpicture.com/q/puerta-izquierda.png);
+  }
+  .frente .ft {
+    width:6em;
+    margin-left:0em;
+  }
+  .frente .bk {
+    width:6em;
+    margin-left:0em;
+  }
+  .frente .rt, .frente .lt {
+    width:3em;
+  }
+  .frente .tp, .frente .bm, .frente .tp .photon-shader, .frente .bm .photon-shader {
+    border-radius:0em;
+  }
+  .frente .cr {
+    width:0em;
+    left:0em;
+  }
+  .frente .cr-0 {
+    transform: translate3D(6em, 0, 1.5em);
+  }
+  .frente .cr-1 {
+    transform: translate3D(6em, 0, -1.5em);
+  }
+  .frente .cr-2 {
+    transform: translate3D(0, 0, -1.5em);
+  }
+  .frente .cr-3 {
+    transform: translate3D(0, 0, 1.5em);
+  }
+  .frente .cr-0 .s0 {
+    transform: rotateY(15deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-0 .s1 {
+    transform: rotateY(45deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-0 .s2 {
+    transform: rotateY(75deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-1 .s0 {
+    transform: rotateY(105deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-1 .s1 {
+    transform: rotateY(135deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-1 .s2 {
+    transform: rotateY(165deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-2 .s0 {
+    transform: rotateY(195deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-2 .s1 {
+    transform: rotateY(225deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-2 .s2 {
+    transform: rotateY(255deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-3 .s0 {
+    transform: rotateY(285deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-3 .s1 {
+    transform: rotateY(315deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .cr-3 .s2 {
+    transform: rotateY(345deg) translate3D(-50%, 0, -0.025em);
+  }
+  .frente .side {
+    width:0.025em;
+  }
+  /* .cub-1 styles */
+  .cub-1 {
+    transform:translate3D(0em, 1.1666666666666667em, 3.5541666666666667em) rotateX(70deg) rotateY(29deg) rotateZ(0deg);
+    opacity:1;
+    width:6em;
+    height:12em;
+    margin:-6em 0 0 -3em;
+  }
+  .cub-1 .ft {
+    transform:translateZ(1em);
+  }
+  .cub-1 .bk {
+    transform:translateZ(-1em) rotateY(180deg);
+  }
+  .cub-1 .rt, .cub-1 .lt {
+    width:2em;
+    height:12em;
+  }
+  .cub-1 .tp, .cub-1 .bm {
+    width:6em;
+    height:2em;
+  }
+  .cub-1 .face {
+    background-color:#141414;
+  }
+  .cub-1 .bk {
+    background-color:#141414;
+  }
+  .cub-1 .bm {
+    background-color:#141414;
+  }
+  .cub-1 .lt {
+    background:url(https://iili.io/HnjIi6F.png);
+  }
+  .cub-1 .rt {
+    background:url(https://iili.io/HnjIL3g.png);
+  }
+  /* .pri-1 styles */
+  .pri-1 {
+    transform:translate3D(2.4145833333333333em, -1.3895833333333336em, 9.358333333333336em) rotateX(-20deg) rotateY(0deg) rotateZ(29deg);
+    opacity:1;
+    width:6em;
+    height:2em;
+    margin:-1em 0 0 -3em;
+  }
+  .pri-1 .rt .face {
+    transform:rotateZ(-56.309932474020215deg);
+  }
+  .pri-1 .lt .face {
+    transform:rotateZ(56.309932474020215deg);
+  }
+  .pri-1 .ft {
+    height:3.605551275463989em;
+    transform:translateZ(-1.5em) rotateX(56.309932474020215deg);
+  }
+  .pri-1 .bk {
+    transform:translateZ(-1.5em) rotateY(180deg);
+  }
+  .pri-1 .rt, .pri-1 .lt {
+    width:3em;
+    height:2em;
+  }
+  .pri-1 .rt .face, .pri-1 .lt .face {
+    height:3.605551275463989em;
+  }
+  .pri-1 .bm {
+    width:6em;
+    height:3em;
+  }
+  .pri-1 .face {
+    background-color:#594016;
+  }
+  .pri-1 .ft {
+    background:url(https://iili.io/Hnj2i42.png);
+  }
+  /* .cyl-1 styles */
+  .cyl-1 {
+    transform:translate3D(-2.1619318181818183em, 1.3579545454545459em, 2.1875em) rotateX(-17deg) rotateY(2deg) rotateZ(119deg);
+    opacity:1;
+    width:2.5em;
+    height:1em;
+    margin:-0.5em 0 0 -1.25em;
+  }
+  .cyl-1 .tp, .cyl-1 .bm {
+    width:2.5em;
+    height:2.5em;
+  }
+  .cyl-1 .side {
+    width:0.5956086859753749em;
+    height:1em;
+  }
+  .cyl-1 .s0 {
+    transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s1 {
+    transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s2 {
+    transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s3 {
+    transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s4 {
+    transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s5 {
+    transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s6 {
+    transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s7 {
+    transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s8 {
+    transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s9 {
+    transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s10 {
+    transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s11 {
+    transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s12 {
+    transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .s13 {
+    transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-1 .face, .cyl-1 .side {
+    background-color:#FFFFFF;
+  }
+  .cyl-1 .tp {
+    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+  }
+  .cyl-1 .bm {
+    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+  }
+  .cyl-1 .side {
+    background:url(https://www.linkpicture.com/q/llanta-frontal.png);
+  }
+  /* .cyl-2 styles */
+  .cyl-2 {
+    transform:translate3D(1.54280303030303em, 2.245833333333333em, 0.5541666666666667em) rotateX(-17deg) rotateY(2deg) rotateZ(119deg);
+    opacity:1;
+    width:2.5em;
+    height:1em;
+    margin:-0.5em 0 0 -1.25em;
+  }
+  .cyl-2 .tp, .cyl-2 .bm {
+    width:2.5em;
+    height:2.5em;
+  }
+  .cyl-2 .side {
+    width:0.5956086859753749em;
+    height:1em;
+  }
+  .cyl-2 .s0 {
+    transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s1 {
+    transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s2 {
+    transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s3 {
+    transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s4 {
+    transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s5 {
+    transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s6 {
+    transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s7 {
+    transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s8 {
+    transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s9 {
+    transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s10 {
+    transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s11 {
+    transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s12 {
+    transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .s13 {
+    transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-2 .face, .cyl-2 .side {
+    background-color:#FFFFFF;
+  }
+  .cyl-2 .tp {
+    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+  }
+  .cyl-2 .bm {
+    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+  }
+  .cyl-2 .side {
+    background:url(https://www.linkpicture.com/q/llanta-frontal.png);
+  }
+  /* .cyl-3 styles */
+  .cyl-3 {
+    transform:translate3D(1.2178030303030298em, 4.17732683982684em, 6.453571428571427em) rotateX(-17deg) rotateY(2deg) rotateZ(119deg);
+    opacity:1;
+    width:2.5em;
+    height:1.0909090909090908em;
+    margin:-0.5454545454545454em 0 0 -1.25em;
+  }
+  .cyl-3 .tp, .cyl-3 .bm {
+    width:2.5em;
+    height:2.5em;
+  }
+  .cyl-3 .side {
+    width:0.5956086859753749em;
+    height:1.0909090909090908em;
+  }
+  .cyl-3 .s0 {
+    transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s1 {
+    transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s2 {
+    transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s3 {
+    transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s4 {
+    transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s5 {
+    transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s6 {
+    transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s7 {
+    transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s8 {
+    transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s9 {
+    transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s10 {
+    transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s11 {
+    transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s12 {
+    transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .s13 {
+    transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-3 .face, .cyl-3 .side {
+    background-color:#FFFFFF;
+  }
+  .cyl-3 .tp {
+    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+  }
+  .cyl-3 .bm {
+    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+  }
+  .cyl-3 .side {
+    background:url(https://www.linkpicture.com/q/llanta-frontal.png);
+  }
+  /* .cyl-4 styles */
+  .cyl-4 {
+    transform:translate3D(-1.9875000000000003em, 2.6770833333333335em, 7.204166666666665em) rotateX(-17deg) rotateY(2deg) rotateZ(119deg);
+    opacity:1;
+    width:2.5em;
+    height:1em;
+    margin:-0.5em 0 0 -1.25em;
+  }
+  .cyl-4 .tp, .cyl-4 .bm {
+    width:2.5em;
+    height:2.5em;
+  }
+  .cyl-4 .side {
+    width:0.5956086859753749em;
+    height:1em;
+  }
+  .cyl-4 .s0 {
+    transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s1 {
+    transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s2 {
+    transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s3 {
+    transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s4 {
+    transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s5 {
+    transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s6 {
+    transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s7 {
+    transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s8 {
+    transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s9 {
+    transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s10 {
+    transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s11 {
+    transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s12 {
+    transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .s13 {
+    transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
+  }
+  .cyl-4 .face, .cyl-4 .side {
+    background-color:#FFFFFF;
+  }
+  .cyl-4 .tp {
+    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+  }
+  .cyl-4 .bm {
+    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+  }
+  .cyl-4 .side {
+    background:url(https://www.linkpicture.com/q/llanta-frontal.png);
+  }
+  /* .cub-2 styles */
+  .cub-2 {
+    transform:translate3D(2.8208333333333333em, -2.7511217948717954em, 8.160256410256409em) rotateX(-16deg) rotateY(0deg) rotateZ(119deg);
+    opacity:1;
+    width:1em;
+    height:4em;
+    margin:-2em 0 0 -0.5em;
+  }
+  .cub-2 .ft {
+    transform:translateZ(0.25em);
+  }
+  .cub-2 .bk {
+    transform:translateZ(-0.25em) rotateY(180deg);
+  }
+  .cub-2 .rt, .cub-2 .lt {
+    width:0.5em;
+    height:4em;
+  }
+  .cub-2 .tp, .cub-2 .bm {
+    width:1em;
+    height:0.5em;
+  }
+  .cub-2 .face {
+    background-color:#424242;
+  }
+  .cub-2 .ft {
+    width:0.5em;
+    margin-left:0.25em;
+  }
+  .cub-2 .bk {
+    width:0.5em;
+    margin-left:-0.25em;
+  }
+  .cub-2 .rt, .cub-2 .lt {
+    width:0em;
+  }
+  .cub-2 .tp, .cub-2 .bm, .cub-2 .tp .photon-shader, .cub-2 .bm .photon-shader {
+    border-radius:0.25em;
+  }
+  .cub-2 .cr {
+    width:0.25em;
+    left:0.125em;
+  }
+  .cub-2 .cr-0 {
+    transform: translate3D(0.5em, 0, 0em);
+  }
+  .cub-2 .cr-1 {
+    transform: translate3D(0.5em, 0, 0em);
+  }
+  .cub-2 .cr-2 {
+    transform: translate3D(0, 0, 0em);
+  }
+  .cub-2 .cr-3 {
+    transform: translate3D(0, 0, 0em);
+  }
+  .cub-2 .cr-0 .s0 {
+    transform: rotateY(15deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-0 .s1 {
+    transform: rotateY(45deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-0 .s2 {
+    transform: rotateY(75deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-1 .s0 {
+    transform: rotateY(105deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-1 .s1 {
+    transform: rotateY(135deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-1 .s2 {
+    transform: rotateY(165deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-2 .s0 {
+    transform: rotateY(195deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-2 .s1 {
+    transform: rotateY(225deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-2 .s2 {
+    transform: rotateY(255deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-3 .s0 {
+    transform: rotateY(285deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-3 .s1 {
+    transform: rotateY(315deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .cr-3 .s2 {
+    transform: rotateY(345deg) translate3D(-50%, 0, 0.225em);
+  }
+  .cub-2 .side {
+    width:0.15897459621556134em;
+  }

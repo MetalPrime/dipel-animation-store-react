@@ -1,11 +1,11 @@
 import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';
 import * as React from 'react';
 
-export type ProductCheckout = {
+export type IProductCheckout = {
     api: WooCommerceRestApi
 }
 
-export const ProductCheckout : React.FC<ProductCheckout> = ({api}) =>{
+export const ProductCheckout : React.FC<IProductCheckout> = ({api}) =>{
 
     const handleNewOrder = () => {
         const data = {
