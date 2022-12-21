@@ -1,676 +1,1314 @@
 /* /!\ You need to add vendor prefixes in order to render the CSS properly (or simply use http://leaverou.github.io/prefixfree/) /!\ */ #tridiv {
-    perspective: 800px;
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    font-size: 175%;
-  }
-  .face {
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.32);
-  }
-  .scene, .shape, .face, .face-wrapper, .cr {
-    position: absolute;
-    transform-style: preserve-3d;
-  }
-  .scene {
-    width: 80em;
-    height: 80em;
-    top: 50%;
-    left: 50%;
-    margin: -40em 0 0 -40em;
-  }
-  .shape {
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    transform-origin: 50%;
-  }
-  .face, .face-wrapper {
-    overflow: hidden;
-    transform-origin: 0 0;
-    backface-visibility: hidden;
-    /* hidden by default, prevent blinking and other weird rendering glitchs */
-  }
-  .face {
-    background-size: 100% 100%!important;
-    background-position: center;
-  }
-  .face-wrapper .face {
-    left: 100%;
-    width: 100%;
-    height: 100%
-  }
-  .photon-shader {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%
-  }
-  .side {
-    left: 50%;
-  }
-  .cr, .cr .side {
-    height: 100%;
-  }
-  [class*="cuboid"] .ft, [class*="cuboid"] .bk {
-    width: 100%;
-    height: 100%;
-  }
-  [class*="cuboid"] .bk {
-    left: 100%;
-  }
-  [class*="cuboid"] .rt {
-    transform: rotateY(-90deg) translateX(-50%);
-  }
-  [class*="cuboid"] .lt {
-    transform: rotateY(90deg) translateX(-50%);
-  }
-  [class*="cuboid"] .tp {
-    transform: rotateX(90deg) translateY(-50%);
-  }
-  [class*="cuboid"] .bm {
-    transform: rotateX(-90deg) translateY(-50%);
-  }
-  [class*="cuboid"] .lt {
-    left: 100%;
-  }
-  [class*="cuboid"] .bm {
-    top: 100%;
-  }
-  [class*="prism"] .ft, [class*="prism"] .bk {
-    width: 100%;
-    height: 100%;
-  }
-  [class*="prism"] .bk {
-    left: 100%;
-  }
-  [class*="prism"] .rt {
-    transform: rotateY(-90deg) translateX(-50%);
-  }
-  [class*="prism"] .lt {
-    transform: rotateY(90deg) translateX(-50%);
-  }
-  [class*="prism"] .bm {
-    transform: rotateX(-90deg) translateY(-50%);
-  }
-  [class*="prism"] .lt {
-    left: 100%;
-  }
-  [class*="prism"] .bm {
-    top: 100%;
-  }
-  [class*="prism"] .rt .face {
-    left: -100%;
-    transform-origin: 100% 0;
-  }
-  [class*="cylinder"] .tp {
-    transform: rotateX(90deg) translateY(-50%);
-  }
-  [class*="cylinder"] .bm {
-    transform: rotateX(-90deg) translateY(-50%);
-  }
-  [class*="cylinder"] .tp, [class*="cylinder"] .bm, [class*="cylinder"] .tp .photon-shader, [class*="cylinder"] .bm .photon-shader {
-    border-radius: 50%;
-  }
-  [class*="cylinder"] .bm {
-    top: 100%;
-  }
-  /* .frente styles */
-  .frente {
-    transform:translate3D(0.7187499999999996em, 1.4958333333333336em, 8.275em) rotateX(-20deg) rotateY(0deg) rotateZ(29deg);
-    opacity:1;
-    width:6em;
-    height:5em;
-    margin:-2.5em 0 0 -3em;
-  }
-  .frente .ft {
-    transform:translateZ(1.5em);
-  }
-  .frente .bk {
-    transform:translateZ(-1.5em) rotateY(180deg);
-  }
-  .frente .rt, .frente .lt {
-    width:3em;
-    height:5em;
-  }
-  .frente .tp, .frente .bm {
-    width:6em;
-    height:3em;
-  }
-  .frente .face {
-    background-color:#FFFFFF;
-  }
-  .frente .ft {
-    background:url(https://www.linkpicture.com/q/parte-frontal.png);
-  }
-  .frente .tp {
-    background-color:#701f1f;
-  }
-  .frente .lt {
-    background:url(https://www.linkpicture.com/q/puerta-derecha.png) #713d3d;
-  }
-  .frente .rt {
-    background:url(https://www.linkpicture.com/q/puerta-izquierda.png);
-  }
-  .frente .ft {
-    width:6em;
-    margin-left:0em;
-  }
-  .frente .bk {
-    width:6em;
-    margin-left:0em;
-  }
-  .frente .rt, .frente .lt {
-    width:3em;
-  }
-  .frente .tp, .frente .bm, .frente .tp .photon-shader, .frente .bm .photon-shader {
-    border-radius:0em;
-  }
-  .frente .cr {
-    width:0em;
-    left:0em;
-  }
-  .frente .cr-0 {
-    transform: translate3D(6em, 0, 1.5em);
-  }
-  .frente .cr-1 {
-    transform: translate3D(6em, 0, -1.5em);
-  }
-  .frente .cr-2 {
-    transform: translate3D(0, 0, -1.5em);
-  }
-  .frente .cr-3 {
-    transform: translate3D(0, 0, 1.5em);
-  }
-  .frente .cr-0 .s0 {
-    transform: rotateY(15deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-0 .s1 {
-    transform: rotateY(45deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-0 .s2 {
-    transform: rotateY(75deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-1 .s0 {
-    transform: rotateY(105deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-1 .s1 {
-    transform: rotateY(135deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-1 .s2 {
-    transform: rotateY(165deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-2 .s0 {
-    transform: rotateY(195deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-2 .s1 {
-    transform: rotateY(225deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-2 .s2 {
-    transform: rotateY(255deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-3 .s0 {
-    transform: rotateY(285deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-3 .s1 {
-    transform: rotateY(315deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .cr-3 .s2 {
-    transform: rotateY(345deg) translate3D(-50%, 0, -0.025em);
-  }
-  .frente .side {
-    width:0.025em;
-  }
-  /* .cub-1 styles */
-  .cub-1 {
-    transform:translate3D(0em, 1.1666666666666667em, 3.5541666666666667em) rotateX(70deg) rotateY(29deg) rotateZ(0deg);
-    opacity:1;
-    width:6em;
-    height:12em;
-    margin:-6em 0 0 -3em;
-  }
-  .cub-1 .ft {
-    transform:translateZ(1em);
-  }
-  .cub-1 .bk {
-    transform:translateZ(-1em) rotateY(180deg);
-  }
-  .cub-1 .rt, .cub-1 .lt {
-    width:2em;
-    height:12em;
-  }
-  .cub-1 .tp, .cub-1 .bm {
-    width:6em;
-    height:2em;
-  }
-  .cub-1 .face {
-    background-color:#141414;
-  }
-  .cub-1 .bk {
-    background-color:#141414;
-  }
-  .cub-1 .bm {
-    background-color:#141414;
-  }
-  .cub-1 .lt {
-    background:url(https://iili.io/HnjIi6F.png);
-  }
-  .cub-1 .rt {
-    background:url(https://iili.io/HnjIL3g.png);
-  }
-  /* .pri-1 styles */
-  .pri-1 {
-    transform:translate3D(2.4145833333333333em, -1.3895833333333336em, 9.358333333333336em) rotateX(-20deg) rotateY(0deg) rotateZ(29deg);
-    opacity:1;
-    width:6em;
-    height:2em;
-    margin:-1em 0 0 -3em;
-  }
-  .pri-1 .rt .face {
-    transform:rotateZ(-56.309932474020215deg);
-  }
-  .pri-1 .lt .face {
-    transform:rotateZ(56.309932474020215deg);
-  }
-  .pri-1 .ft {
-    height:3.605551275463989em;
-    transform:translateZ(-1.5em) rotateX(56.309932474020215deg);
-  }
-  .pri-1 .bk {
-    transform:translateZ(-1.5em) rotateY(180deg);
-  }
-  .pri-1 .rt, .pri-1 .lt {
-    width:3em;
-    height:2em;
-  }
-  .pri-1 .rt .face, .pri-1 .lt .face {
-    height:3.605551275463989em;
-  }
-  .pri-1 .bm {
-    width:6em;
-    height:3em;
-  }
-  .pri-1 .face {
-    background-color:#594016;
-  }
-  .pri-1 .ft {
-    background:url(https://iili.io/Hnj2i42.png);
-  }
-  /* .cyl-1 styles */
-  .cyl-1 {
-    transform:translate3D(-2.1619318181818183em, 1.3579545454545459em, 2.1875em) rotateX(-17deg) rotateY(2deg) rotateZ(119deg);
-    opacity:1;
-    width:2.5em;
-    height:1em;
-    margin:-0.5em 0 0 -1.25em;
-  }
-  .cyl-1 .tp, .cyl-1 .bm {
-    width:2.5em;
-    height:2.5em;
-  }
-  .cyl-1 .side {
-    width:0.5956086859753749em;
-    height:1em;
-  }
-  .cyl-1 .s0 {
-    transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s1 {
-    transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s2 {
-    transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s3 {
-    transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s4 {
-    transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s5 {
-    transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s6 {
-    transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s7 {
-    transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s8 {
-    transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s9 {
-    transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s10 {
-    transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s11 {
-    transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s12 {
-    transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .s13 {
-    transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-1 .face, .cyl-1 .side {
-    background-color:#FFFFFF;
-  }
-  .cyl-1 .tp {
-    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
-  }
-  .cyl-1 .bm {
-    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
-  }
-  .cyl-1 .side {
-    background:url(https://www.linkpicture.com/q/llanta-frontal.png);
-  }
-  /* .cyl-2 styles */
-  .cyl-2 {
-    transform:translate3D(1.54280303030303em, 2.245833333333333em, 0.5541666666666667em) rotateX(-17deg) rotateY(2deg) rotateZ(119deg);
-    opacity:1;
-    width:2.5em;
-    height:1em;
-    margin:-0.5em 0 0 -1.25em;
-  }
-  .cyl-2 .tp, .cyl-2 .bm {
-    width:2.5em;
-    height:2.5em;
-  }
-  .cyl-2 .side {
-    width:0.5956086859753749em;
-    height:1em;
-  }
-  .cyl-2 .s0 {
-    transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s1 {
-    transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s2 {
-    transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s3 {
-    transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s4 {
-    transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s5 {
-    transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s6 {
-    transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s7 {
-    transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s8 {
-    transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s9 {
-    transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s10 {
-    transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s11 {
-    transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s12 {
-    transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .s13 {
-    transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-2 .face, .cyl-2 .side {
-    background-color:#FFFFFF;
-  }
-  .cyl-2 .tp {
-    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
-  }
-  .cyl-2 .bm {
-    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
-  }
-  .cyl-2 .side {
-    background:url(https://www.linkpicture.com/q/llanta-frontal.png);
-  }
-  /* .cyl-3 styles */
-  .cyl-3 {
-    transform:translate3D(1.2178030303030298em, 4.17732683982684em, 6.453571428571427em) rotateX(-17deg) rotateY(2deg) rotateZ(119deg);
-    opacity:1;
-    width:2.5em;
-    height:1.0909090909090908em;
-    margin:-0.5454545454545454em 0 0 -1.25em;
-  }
-  .cyl-3 .tp, .cyl-3 .bm {
-    width:2.5em;
-    height:2.5em;
-  }
-  .cyl-3 .side {
-    width:0.5956086859753749em;
-    height:1.0909090909090908em;
-  }
-  .cyl-3 .s0 {
-    transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s1 {
-    transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s2 {
-    transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s3 {
-    transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s4 {
-    transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s5 {
-    transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s6 {
-    transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s7 {
-    transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s8 {
-    transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s9 {
-    transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s10 {
-    transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s11 {
-    transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s12 {
-    transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .s13 {
-    transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-3 .face, .cyl-3 .side {
-    background-color:#FFFFFF;
-  }
-  .cyl-3 .tp {
-    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
-  }
-  .cyl-3 .bm {
-    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
-  }
-  .cyl-3 .side {
-    background:url(https://www.linkpicture.com/q/llanta-frontal.png);
-  }
-  /* .cyl-4 styles */
-  .cyl-4 {
-    transform:translate3D(-1.9875000000000003em, 2.6770833333333335em, 7.204166666666665em) rotateX(-17deg) rotateY(2deg) rotateZ(119deg);
-    opacity:1;
-    width:2.5em;
-    height:1em;
-    margin:-0.5em 0 0 -1.25em;
-  }
-  .cyl-4 .tp, .cyl-4 .bm {
-    width:2.5em;
-    height:2.5em;
-  }
-  .cyl-4 .side {
-    width:0.5956086859753749em;
-    height:1em;
-  }
-  .cyl-4 .s0 {
-    transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s1 {
-    transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s2 {
-    transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s3 {
-    transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s4 {
-    transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s5 {
-    transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s6 {
-    transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s7 {
-    transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s8 {
-    transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s9 {
-    transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s10 {
-    transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s11 {
-    transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s12 {
-    transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .s13 {
-    transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
-  }
-  .cyl-4 .face, .cyl-4 .side {
-    background-color:#FFFFFF;
-  }
-  .cyl-4 .tp {
-    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
-  }
-  .cyl-4 .bm {
-    background:url(https://www.linkpicture.com/q/llanta-lateral.png);
-  }
-  .cyl-4 .side {
-    background:url(https://www.linkpicture.com/q/llanta-frontal.png);
-  }
-  /* .cub-2 styles */
-  .cub-2 {
-    transform:translate3D(2.8208333333333333em, -2.7511217948717954em, 8.160256410256409em) rotateX(-16deg) rotateY(0deg) rotateZ(119deg);
-    opacity:1;
-    width:1em;
-    height:4em;
-    margin:-2em 0 0 -0.5em;
-  }
-  .cub-2 .ft {
-    transform:translateZ(0.25em);
-  }
-  .cub-2 .bk {
-    transform:translateZ(-0.25em) rotateY(180deg);
-  }
-  .cub-2 .rt, .cub-2 .lt {
-    width:0.5em;
-    height:4em;
-  }
-  .cub-2 .tp, .cub-2 .bm {
-    width:1em;
-    height:0.5em;
-  }
-  .cub-2 .face {
-    background-color:#424242;
-  }
-  .cub-2 .ft {
-    width:0.5em;
-    margin-left:0.25em;
-  }
-  .cub-2 .bk {
-    width:0.5em;
-    margin-left:-0.25em;
-  }
-  .cub-2 .rt, .cub-2 .lt {
-    width:0em;
-  }
-  .cub-2 .tp, .cub-2 .bm, .cub-2 .tp .photon-shader, .cub-2 .bm .photon-shader {
-    border-radius:0.25em;
-  }
-  .cub-2 .cr {
-    width:0.25em;
-    left:0.125em;
-  }
-  .cub-2 .cr-0 {
-    transform: translate3D(0.5em, 0, 0em);
-  }
-  .cub-2 .cr-1 {
-    transform: translate3D(0.5em, 0, 0em);
-  }
-  .cub-2 .cr-2 {
-    transform: translate3D(0, 0, 0em);
-  }
-  .cub-2 .cr-3 {
-    transform: translate3D(0, 0, 0em);
-  }
-  .cub-2 .cr-0 .s0 {
-    transform: rotateY(15deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-0 .s1 {
-    transform: rotateY(45deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-0 .s2 {
-    transform: rotateY(75deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-1 .s0 {
-    transform: rotateY(105deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-1 .s1 {
-    transform: rotateY(135deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-1 .s2 {
-    transform: rotateY(165deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-2 .s0 {
-    transform: rotateY(195deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-2 .s1 {
-    transform: rotateY(225deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-2 .s2 {
-    transform: rotateY(255deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-3 .s0 {
-    transform: rotateY(285deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-3 .s1 {
-    transform: rotateY(315deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .cr-3 .s2 {
-    transform: rotateY(345deg) translate3D(-50%, 0, 0.225em);
-  }
-  .cub-2 .side {
-    width:0.15897459621556134em;
-  }
+  perspective: 800px;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  font-size: 162.5%;
+}
+.scene, .shape, .face, .face-wrapper, .cr {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+.scene {
+  width: 80em;
+  height: 80em;
+  top: 50%;
+  left: 50%;
+  margin: -40em 0 0 -40em;
+}
+.shape {
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform-origin: 50%;
+}
+.face, .face-wrapper {
+  overflow: hidden;
+  transform-origin: 0 0;
+  backface-visibility: hidden;
+  /* hidden by default, prevent blinking and other weird rendering glitchs */
+}
+.face {
+  background-size: 100% 100%!important;
+  background-position: center;
+}
+.face-wrapper .face {
+  left: 100%;
+  width: 100%;
+  height: 100%
+}
+.photon-shader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%
+}
+.side {
+  left: 50%;
+}
+.cr, .cr .side {
+  height: 100%;
+}
+[class*="cuboid"] .ft, [class*="cuboid"] .bk {
+  width: 100%;
+  height: 100%;
+}
+[class*="cuboid"] .bk {
+  left: 100%;
+}
+[class*="cuboid"] .rt {
+  transform: rotateY(-90deg) translateX(-50%);
+}
+[class*="cuboid"] .lt {
+  transform: rotateY(90deg) translateX(-50%);
+}
+[class*="cuboid"] .tp {
+  transform: rotateX(90deg) translateY(-50%);
+}
+[class*="cuboid"] .bm {
+  transform: rotateX(-90deg) translateY(-50%);
+}
+[class*="cuboid"] .lt {
+  left: 100%;
+}
+[class*="cuboid"] .bm {
+  top: 100%;
+}
+[class*="prism"] .ft, [class*="prism"] .bk {
+  width: 100%;
+  height: 100%;
+}
+[class*="prism"] .bk {
+  left: 100%;
+}
+[class*="prism"] .rt {
+  transform: rotateY(-90deg) translateX(-50%);
+}
+[class*="prism"] .lt {
+  transform: rotateY(90deg) translateX(-50%);
+}
+[class*="prism"] .bm {
+  transform: rotateX(-90deg) translateY(-50%);
+}
+[class*="prism"] .lt {
+  left: 100%;
+}
+[class*="prism"] .bm {
+  top: 100%;
+}
+[class*="prism"] .rt .face {
+  left: -100%;
+  transform-origin: 100% 0;
+}
+[class*="cylinder"] .tp {
+  transform: rotateX(90deg) translateY(-50%);
+}
+[class*="cylinder"] .bm {
+  transform: rotateX(-90deg) translateY(-50%);
+}
+[class*="cylinder"] .tp, [class*="cylinder"] .bm, [class*="cylinder"] .tp .photon-shader, [class*="cylinder"] .bm .photon-shader {
+  border-radius: 50%;
+}
+[class*="cylinder"] .bm {
+  top: 100%;
+}
+/* .frente styles */
+.frente {
+  transform:translate3D(3.05010989010989em, 3.4985805860805854em, 8.14313186813187em) rotateX(-30.5deg) rotateY(2deg) rotateZ(40deg);
+  opacity:1;
+  width:6em;
+  height:6em;
+  margin:-3em 0 0 -3em;
+}
+.frente .ft {
+  transform:translateZ(1em);
+}
+.frente .bk {
+  transform:translateZ(-1em) rotateY(180deg);
+}
+.frente .rt, .frente .lt {
+  width:2em;
+  height:6em;
+}
+.frente .tp, .frente .bm {
+  width:6em;
+  height:2em;
+}
+.frente .face {
+  background-color:#FFFFFF;
+}
+.frente .ft {
+  background:url(https://iili.io/HzMlYq7.th.png);
+}
+.frente .tp {
+  background-color:#701f1f;
+}
+.frente .lt {
+  background:url(https://www.linkpicture.com/q/puerta-derecha.png) #713d3d;
+}
+.frente .rt {
+  background:url(https://www.linkpicture.com/q/puerta-izquierda.png);
+}
+.frente .ft {
+  width:6em;
+  margin-left:0em;
+}
+.frente .bk {
+  width:6em;
+  margin-left:0em;
+}
+.frente .rt, .frente .lt {
+  width:2em;
+}
+.frente .tp, .frente .bm, .frente .tp .photon-shader, .frente .bm .photon-shader {
+  border-radius:0em;
+}
+.frente .cr {
+  width:0em;
+  left:0em;
+}
+.frente .cr-0 {
+  transform: translate3D(6em, 0, 1em);
+}
+.frente .cr-1 {
+  transform: translate3D(6em, 0, -1em);
+}
+.frente .cr-2 {
+  transform: translate3D(0, 0, -1em);
+}
+.frente .cr-3 {
+  transform: translate3D(0, 0, 1em);
+}
+.frente .cr-0 .s0 {
+  transform: rotateY(15deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-0 .s1 {
+  transform: rotateY(45deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-0 .s2 {
+  transform: rotateY(75deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-1 .s0 {
+  transform: rotateY(105deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-1 .s1 {
+  transform: rotateY(135deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-1 .s2 {
+  transform: rotateY(165deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-2 .s0 {
+  transform: rotateY(195deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-2 .s1 {
+  transform: rotateY(225deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-2 .s2 {
+  transform: rotateY(255deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-3 .s0 {
+  transform: rotateY(285deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-3 .s1 {
+  transform: rotateY(315deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .cr-3 .s2 {
+  transform: rotateY(345deg) translate3D(-50%, 0, -0.025em);
+}
+.frente .side {
+  width:0.025em;
+}
+/* .cub-1 styles */
+.cub-1 {
+  transform:translate3D(1.3214285714285712em, 1.8928571428571428em, 2.7327380952380946em) rotateX(-303deg) rotateY(40deg) rotateZ(-2deg);
+  opacity:1;
+  width:6em;
+  height:13em;
+  margin:-6.5em 0 0 -3em;
+}
+.cub-1 .ft {
+  transform:translateZ(0.75em);
+}
+.cub-1 .bk {
+  transform:translateZ(-0.75em) rotateY(180deg);
+}
+.cub-1 .rt, .cub-1 .lt {
+  width:1.5em;
+  height:13em;
+}
+.cub-1 .tp, .cub-1 .bm {
+  width:6em;
+  height:1.5em;
+}
+.cub-1 .face {
+  background-color:#141414;
+}
+.cub-1 .bk {
+  background-color:#141414;
+}
+.cub-1 .bm {
+  background-color:#141414;
+}
+.cub-1 .lt {
+  background:url(https://iili.io/HnjIi6F.png);
+}
+.cub-1 .rt {
+  background:url(https://iili.io/HnjIL3g.png);
+}
+/* .pri-1 styles */
+.pri-1 {
+  transform:translate3D(5.307440476190475em, 1.4153617216117214em, 9.495695970695971em) rotateX(-30.5deg) rotateY(2deg) rotateZ(40deg);
+  opacity:1;
+  width:3em;
+  height:1em;
+  margin:-0.5em 0 0 -1.5em;
+}
+.pri-1 .rt .face {
+  transform:rotateZ(-56.309932474020215deg);
+}
+.pri-1 .lt .face {
+  transform:rotateZ(56.309932474020215deg);
+}
+.pri-1 .ft {
+  height:1.8027756377319946em;
+  transform:translateZ(-0.75em) rotateX(56.309932474020215deg);
+}
+.pri-1 .bk {
+  transform:translateZ(-0.75em) rotateY(180deg);
+}
+.pri-1 .rt, .pri-1 .lt {
+  width:1.5em;
+  height:1em;
+}
+.pri-1 .rt .face, .pri-1 .lt .face {
+  height:1.8027756377319946em;
+}
+.pri-1 .bm {
+  width:3em;
+  height:1.5em;
+}
+.pri-1 .face {
+  background-color:#594016;
+}
+.pri-1 .ft {
+  background:url(https://iili.io/Hnj2i42.png);
+}
+/* .cyl-3 styles */
+.cyl-3 {
+  transform:translate3D(2.294726107226106em, 5.949304861804861em, 4.816208791208789em) rotateX(-30deg) rotateY(2deg) rotateZ(129deg);
+  opacity:1;
+  width:2.5em;
+  height:1.0909090909090908em;
+  margin:-0.5454545454545454em 0 0 -1.25em;
+}
+.cyl-3 .tp, .cyl-3 .bm {
+  width:2.5em;
+  height:2.5em;
+}
+.cyl-3 .side {
+  width:0.5956086859753749em;
+  height:1.0909090909090908em;
+}
+.cyl-3 .s0 {
+  transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s1 {
+  transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s2 {
+  transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s3 {
+  transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s4 {
+  transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s5 {
+  transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s6 {
+  transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s7 {
+  transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s8 {
+  transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s9 {
+  transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s10 {
+  transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s11 {
+  transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s12 {
+  transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .s13 {
+  transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-3 .face, .cyl-3 .side {
+  background-color:#FFFFFF;
+}
+.cyl-3 .tp {
+  background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+}
+.cyl-3 .bm {
+  background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+}
+.cyl-3 .side {
+  background:url(https://www.linkpicture.com/q/llanta-frontal.png);
+}
+/* .cub-2 styles */
+.cub-2 {
+  transform:translate3D(5.109294871794871em, 0.9109661172161172em, 8.517399267399266em) rotateX(-26deg) rotateY(6deg) rotateZ(130deg);
+  opacity:1;
+  width:1em;
+  height:4em;
+  margin:-2em 0 0 -0.5em;
+}
+.cub-2 .ft {
+  transform:translateZ(0.25em);
+}
+.cub-2 .bk {
+  transform:translateZ(-0.25em) rotateY(180deg);
+}
+.cub-2 .rt, .cub-2 .lt {
+  width:0.5em;
+  height:4em;
+}
+.cub-2 .tp, .cub-2 .bm {
+  width:1em;
+  height:0.5em;
+}
+.cub-2 .face {
+  background-color:#424242;
+}
+.cub-2 .ft {
+  width:0.5em;
+  margin-left:0.25em;
+}
+.cub-2 .bk {
+  width:0.5em;
+  margin-left:-0.25em;
+}
+.cub-2 .rt, .cub-2 .lt {
+  width:0em;
+}
+.cub-2 .tp, .cub-2 .bm, .cub-2 .tp .photon-shader, .cub-2 .bm .photon-shader {
+  border-radius:0.25em;
+}
+.cub-2 .cr {
+  width:0.25em;
+  left:0.125em;
+}
+.cub-2 .cr-0 {
+  transform: translate3D(0.5em, 0, 0em);
+}
+.cub-2 .cr-1 {
+  transform: translate3D(0.5em, 0, 0em);
+}
+.cub-2 .cr-2 {
+  transform: translate3D(0, 0, 0em);
+}
+.cub-2 .cr-3 {
+  transform: translate3D(0, 0, 0em);
+}
+.cub-2 .cr-0 .s0 {
+  transform: rotateY(15deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-0 .s1 {
+  transform: rotateY(45deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-0 .s2 {
+  transform: rotateY(75deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-1 .s0 {
+  transform: rotateY(105deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-1 .s1 {
+  transform: rotateY(135deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-1 .s2 {
+  transform: rotateY(165deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-2 .s0 {
+  transform: rotateY(195deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-2 .s1 {
+  transform: rotateY(225deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-2 .s2 {
+  transform: rotateY(255deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-3 .s0 {
+  transform: rotateY(285deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-3 .s1 {
+  transform: rotateY(315deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .cr-3 .s2 {
+  transform: rotateY(345deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-2 .side {
+  width:0.15897459621556134em;
+}
+/* .frente-1 styles */
+.frente-1 {
+  transform:translate3D(1.7781318681318679em, 5.968360805860805em, 9.005769230769236em) rotateX(-30.5deg) rotateY(2deg) rotateZ(40deg);
+  opacity:1;
+  width:6em;
+  height:2em;
+  margin:-1em 0 0 -3em;
+}
+.frente-1 .ft {
+  transform:translateZ(1em);
+}
+.frente-1 .bk {
+  transform:translateZ(-1em) rotateY(180deg);
+}
+.frente-1 .rt, .frente-1 .lt {
+  width:2em;
+  height:2em;
+}
+.frente-1 .tp, .frente-1 .bm {
+  width:6em;
+  height:2em;
+}
+.frente-1 .face {
+  background-color:#D59E11;
+}
+.frente-1 .ft {
+  background:url(https://iili.io/HzMR6qg.th.png);
+}
+.frente-1 .ft {
+  width:6em;
+  margin-left:0em;
+}
+.frente-1 .bk {
+  width:6em;
+  margin-left:0em;
+}
+.frente-1 .rt, .frente-1 .lt {
+  width:2em;
+}
+.frente-1 .tp, .frente-1 .bm, .frente-1 .tp .photon-shader, .frente-1 .bm .photon-shader {
+  border-radius:0em;
+}
+.frente-1 .cr {
+  width:0em;
+  left:0em;
+}
+.frente-1 .cr-0 {
+  transform: translate3D(6em, 0, 1em);
+}
+.frente-1 .cr-1 {
+  transform: translate3D(6em, 0, -1em);
+}
+.frente-1 .cr-2 {
+  transform: translate3D(0, 0, -1em);
+}
+.frente-1 .cr-3 {
+  transform: translate3D(0, 0, 1em);
+}
+.frente-1 .cr-0 .s0 {
+  transform: rotateY(15deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-0 .s1 {
+  transform: rotateY(45deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-0 .s2 {
+  transform: rotateY(75deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-1 .s0 {
+  transform: rotateY(105deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-1 .s1 {
+  transform: rotateY(135deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-1 .s2 {
+  transform: rotateY(165deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-2 .s0 {
+  transform: rotateY(195deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-2 .s1 {
+  transform: rotateY(225deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-2 .s2 {
+  transform: rotateY(255deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-3 .s0 {
+  transform: rotateY(285deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-3 .s1 {
+  transform: rotateY(315deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .cr-3 .s2 {
+  transform: rotateY(345deg) translate3D(-50%, 0, -0.025em);
+}
+.frente-1 .side {
+  width:0.025em;
+}
+/* .pri-2 styles */
+.pri-2 {
+  transform:translate3D(3.200297619047621em, 4.5389880952380945em, 9.850091575091573em) rotateX(-30.5deg) rotateY(2deg) rotateZ(-321deg);
+  opacity:1;
+  width:6em;
+  height:2.5em;
+  margin:-1.25em 0 0 -3em;
+}
+.pri-2 .rt .face {
+  transform:rotateZ(-38.65980825409008deg);
+}
+.pri-2 .lt .face {
+  transform:rotateZ(38.65980825409008deg);
+}
+.pri-2 .ft {
+  height:3.2015621187164243em;
+  transform:translateZ(-1em) rotateX(38.65980825409008deg);
+}
+.pri-2 .bk {
+  transform:translateZ(-1em) rotateY(180deg);
+}
+.pri-2 .rt, .pri-2 .lt {
+  width:2em;
+  height:2.5em;
+}
+.pri-2 .rt .face, .pri-2 .lt .face {
+  height:3.2015621187164243em;
+}
+.pri-2 .bm {
+  width:6em;
+  height:2em;
+}
+.pri-2 .face {
+  background-color:#D59E11;
+}
+.pri-2 .ft {
+  background:url(https://iili.io/HzMYNgs.th.png);
+}
+/* .frente-2 styles */
+.frente-2 {
+  transform:translate3D(1.7479120879120886em, 6.501327838827837em, 9.698076923076929em) rotateX(-30.5deg) rotateY(2deg) rotateZ(40deg);
+  opacity:1;
+  width:3em;
+  height:1.5em;
+  margin:-0.75em 0 0 -1.5em;
+}
+.frente-2 .ft {
+  transform:translateZ(0.5em);
+}
+.frente-2 .bk {
+  transform:translateZ(-0.5em) rotateY(180deg);
+}
+.frente-2 .rt, .frente-2 .lt {
+  width:1em;
+  height:1.5em;
+}
+.frente-2 .tp, .frente-2 .bm {
+  width:3em;
+  height:1em;
+}
+.frente-2 .face {
+  background-color:#828282;
+}
+.frente-2 .ft {
+  background:url(https://iili.io/HzMzaLb.th.png);
+}
+.frente-2 .tp {
+  background-color:#828282;
+}
+.frente-2 .lt {
+  background:url(https://iili.io/HzMzaLb.th.png) #828282;
+}
+.frente-2 .rt {
+  background:url(https://www.linkpicture.com/q/puerta-izquierda.png);
+}
+.frente-2 .ft {
+  width:2em;
+  margin-left:0.5em;
+}
+.frente-2 .bk {
+  width:2em;
+  margin-left:-0.5em;
+}
+.frente-2 .rt, .frente-2 .lt {
+  width:0em;
+}
+.frente-2 .tp, .frente-2 .bm, .frente-2 .tp .photon-shader, .frente-2 .bm .photon-shader {
+  border-radius:0.5em;
+}
+.frente-2 .cr {
+  width:0.5em;
+  left:0.25em;
+}
+.frente-2 .cr-0 {
+  transform: translate3D(2em, 0, 0em);
+}
+.frente-2 .cr-1 {
+  transform: translate3D(2em, 0, 0em);
+}
+.frente-2 .cr-2 {
+  transform: translate3D(0, 0, 0em);
+}
+.frente-2 .cr-3 {
+  transform: translate3D(0, 0, 0em);
+}
+.frente-2 .cr-0 .s0 {
+  transform: rotateY(15deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-0 .s1 {
+  transform: rotateY(45deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-0 .s2 {
+  transform: rotateY(75deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-1 .s0 {
+  transform: rotateY(105deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-1 .s1 {
+  transform: rotateY(135deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-1 .s2 {
+  transform: rotateY(165deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-2 .s0 {
+  transform: rotateY(195deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-2 .s1 {
+  transform: rotateY(225deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-2 .s2 {
+  transform: rotateY(255deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-3 .s0 {
+  transform: rotateY(285deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-3 .s1 {
+  transform: rotateY(315deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .cr-3 .s2 {
+  transform: rotateY(345deg) translate3D(-50%, 0, 0.475em);
+}
+.frente-2 .side {
+  width:0.2929491924311227em;
+}
+/* .cub-3 styles */
+.cub-3 {
+  transform:translate3D(5.980769230769231em, 3.5906593406593403em, 6.928571428571429em) rotateX(-30.5deg) rotateY(2deg) rotateZ(40deg);
+  opacity:1;
+  width:0.5em;
+  height:7em;
+  margin:-3.5em 0 0 -0.25em;
+}
+.cub-3 .ft {
+  transform:translateZ(0.5em);
+}
+.cub-3 .bk {
+  transform:translateZ(-0.5em) rotateY(180deg);
+}
+.cub-3 .rt, .cub-3 .lt {
+  width:1em;
+  height:7em;
+}
+.cub-3 .tp, .cub-3 .bm {
+  width:0.5em;
+  height:1em;
+}
+.cub-3 .face {
+  background-color:#828282;
+}
+.cub-3 .ft {
+  width:0em;
+  margin-left:0.25em;
+}
+.cub-3 .bk {
+  width:0em;
+  margin-left:-0.25em;
+}
+.cub-3 .rt, .cub-3 .lt {
+  width:0.5em;
+}
+.cub-3 .tp, .cub-3 .bm, .cub-3 .tp .photon-shader, .cub-3 .bm .photon-shader {
+  border-radius:0.25em;
+}
+.cub-3 .cr {
+  width:0.25em;
+  left:0.125em;
+}
+.cub-3 .cr-0 {
+  transform: translate3D(0em, 0, 0.25em);
+}
+.cub-3 .cr-1 {
+  transform: translate3D(0em, 0, -0.25em);
+}
+.cub-3 .cr-2 {
+  transform: translate3D(0, 0, -0.25em);
+}
+.cub-3 .cr-3 {
+  transform: translate3D(0, 0, 0.25em);
+}
+.cub-3 .cr-0 .s0 {
+  transform: rotateY(15deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-0 .s1 {
+  transform: rotateY(45deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-0 .s2 {
+  transform: rotateY(75deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-1 .s0 {
+  transform: rotateY(105deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-1 .s1 {
+  transform: rotateY(135deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-1 .s2 {
+  transform: rotateY(165deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-2 .s0 {
+  transform: rotateY(195deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-2 .s1 {
+  transform: rotateY(225deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-2 .s2 {
+  transform: rotateY(255deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-3 .s0 {
+  transform: rotateY(285deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-3 .s1 {
+  transform: rotateY(315deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .cr-3 .s2 {
+  transform: rotateY(345deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-3 .side {
+  width:0.15897459621556134em;
+}
+/* .cub-4 styles */
+.cub-4 {
+  transform:translate3D(1.9395604395604384em, 0.7554945054945054em, 8.876373626373628em) rotateX(-30.5deg) rotateY(2deg) rotateZ(40deg);
+  opacity:1;
+  width:0.5em;
+  height:7em;
+  margin:-3.5em 0 0 -0.25em;
+}
+.cub-4 .ft {
+  transform:translateZ(0.5em);
+}
+.cub-4 .bk {
+  transform:translateZ(-0.5em) rotateY(180deg);
+}
+.cub-4 .rt, .cub-4 .lt {
+  width:1em;
+  height:7em;
+}
+.cub-4 .tp, .cub-4 .bm {
+  width:0.5em;
+  height:1em;
+}
+.cub-4 .face {
+  background-color:#828282;
+}
+.cub-4 .ft {
+  width:0em;
+  margin-left:0.25em;
+}
+.cub-4 .bk {
+  width:0em;
+  margin-left:-0.25em;
+}
+.cub-4 .rt, .cub-4 .lt {
+  width:0.5em;
+}
+.cub-4 .tp, .cub-4 .bm, .cub-4 .tp .photon-shader, .cub-4 .bm .photon-shader {
+  border-radius:0.25em;
+}
+.cub-4 .cr {
+  width:0.25em;
+  left:0.125em;
+}
+.cub-4 .cr-0 {
+  transform: translate3D(0em, 0, 0.25em);
+}
+.cub-4 .cr-1 {
+  transform: translate3D(0em, 0, -0.25em);
+}
+.cub-4 .cr-2 {
+  transform: translate3D(0, 0, -0.25em);
+}
+.cub-4 .cr-3 {
+  transform: translate3D(0, 0, 0.25em);
+}
+.cub-4 .cr-0 .s0 {
+  transform: rotateY(15deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-0 .s1 {
+  transform: rotateY(45deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-0 .s2 {
+  transform: rotateY(75deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-1 .s0 {
+  transform: rotateY(105deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-1 .s1 {
+  transform: rotateY(135deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-1 .s2 {
+  transform: rotateY(165deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-2 .s0 {
+  transform: rotateY(195deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-2 .s1 {
+  transform: rotateY(225deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-2 .s2 {
+  transform: rotateY(255deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-3 .s0 {
+  transform: rotateY(285deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-3 .s1 {
+  transform: rotateY(315deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .cr-3 .s2 {
+  transform: rotateY(345deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-4 .side {
+  width:0.15897459621556134em;
+}
+/* .cub-5 styles */
+.cub-5 {
+  transform:translate3D(3.623626373626375em, 3.3681318681318677em, 1.593406593406593em) rotateX(-303deg) rotateY(40deg) rotateZ(-2deg);
+  opacity:1;
+  width:0.5em;
+  height:7em;
+  margin:-3.5em 0 0 -0.25em;
+}
+.cub-5 .ft {
+  transform:translateZ(0.5em);
+}
+.cub-5 .bk {
+  transform:translateZ(-0.5em) rotateY(180deg);
+}
+.cub-5 .rt, .cub-5 .lt {
+  width:1em;
+  height:7em;
+}
+.cub-5 .tp, .cub-5 .bm {
+  width:0.5em;
+  height:1em;
+}
+.cub-5 .face {
+  background-color:#828282;
+}
+.cub-5 .ft {
+  width:0em;
+  margin-left:0.25em;
+}
+.cub-5 .bk {
+  width:0em;
+  margin-left:-0.25em;
+}
+.cub-5 .rt, .cub-5 .lt {
+  width:0.5em;
+}
+.cub-5 .tp, .cub-5 .bm, .cub-5 .tp .photon-shader, .cub-5 .bm .photon-shader {
+  border-radius:0.25em;
+}
+.cub-5 .cr {
+  width:0.25em;
+  left:0.125em;
+}
+.cub-5 .cr-0 {
+  transform: translate3D(0em, 0, 0.25em);
+}
+.cub-5 .cr-1 {
+  transform: translate3D(0em, 0, -0.25em);
+}
+.cub-5 .cr-2 {
+  transform: translate3D(0, 0, -0.25em);
+}
+.cub-5 .cr-3 {
+  transform: translate3D(0, 0, 0.25em);
+}
+.cub-5 .cr-0 .s0 {
+  transform: rotateY(15deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-0 .s1 {
+  transform: rotateY(45deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-0 .s2 {
+  transform: rotateY(75deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-1 .s0 {
+  transform: rotateY(105deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-1 .s1 {
+  transform: rotateY(135deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-1 .s2 {
+  transform: rotateY(165deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-2 .s0 {
+  transform: rotateY(195deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-2 .s1 {
+  transform: rotateY(225deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-2 .s2 {
+  transform: rotateY(255deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-3 .s0 {
+  transform: rotateY(285deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-3 .s1 {
+  transform: rotateY(315deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .cr-3 .s2 {
+  transform: rotateY(345deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-5 .side {
+  width:0.15897459621556134em;
+}
+/* .cub-6 styles */
+.cub-6 {
+  transform:translate3D(6.903846153846154em, 3.8983516483516474em, 9.351648351648354em) rotateX(-30.5deg) rotateY(2deg) rotateZ(40deg);
+  opacity:1;
+  width:0.25em;
+  height:3.5em;
+  margin:-1.75em 0 0 -0.125em;
+}
+.cub-6 .ft {
+  transform:translateZ(0.25em);
+}
+.cub-6 .bk {
+  transform:translateZ(-0.25em) rotateY(180deg);
+}
+.cub-6 .rt, .cub-6 .lt {
+  width:0.5em;
+  height:3.5em;
+}
+.cub-6 .tp, .cub-6 .bm {
+  width:0.25em;
+  height:0.5em;
+}
+.cub-6 .face {
+  background-color:#828282;
+}
+.cub-6 .ft {
+  width:0em;
+  margin-left:0.125em;
+}
+.cub-6 .bk {
+  width:0em;
+  margin-left:-0.125em;
+}
+.cub-6 .rt, .cub-6 .lt {
+  width:0.25em;
+}
+.cub-6 .tp, .cub-6 .bm, .cub-6 .tp .photon-shader, .cub-6 .bm .photon-shader {
+  border-radius:0.125em;
+}
+.cub-6 .cr {
+  width:0.125em;
+  left:0.0625em;
+}
+.cub-6 .cr-0 {
+  transform: translate3D(0em, 0, 0.125em);
+}
+.cub-6 .cr-1 {
+  transform: translate3D(0em, 0, -0.125em);
+}
+.cub-6 .cr-2 {
+  transform: translate3D(0, 0, -0.125em);
+}
+.cub-6 .cr-3 {
+  transform: translate3D(0, 0, 0.125em);
+}
+.cub-6 .cr-0 .s0 {
+  transform: rotateY(15deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-0 .s1 {
+  transform: rotateY(45deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-0 .s2 {
+  transform: rotateY(75deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-1 .s0 {
+  transform: rotateY(105deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-1 .s1 {
+  transform: rotateY(135deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-1 .s2 {
+  transform: rotateY(165deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-2 .s0 {
+  transform: rotateY(195deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-2 .s1 {
+  transform: rotateY(225deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-2 .s2 {
+  transform: rotateY(255deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-3 .s0 {
+  transform: rotateY(285deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-3 .s1 {
+  transform: rotateY(315deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .cr-3 .s2 {
+  transform: rotateY(345deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-6 .side {
+  width:0.09198729810778067em;
+}
+/* .cub-7 styles */
+.cub-7 {
+  transform:translate3D(2.6730769230769234em, 0.9752747252747245em, 11.082417582417584em) rotateX(-30.5deg) rotateY(2deg) rotateZ(40deg);
+  opacity:1;
+  width:0.25em;
+  height:3.5em;
+  margin:-1.75em 0 0 -0.125em;
+}
+.cub-7 .ft {
+  transform:translateZ(0.25em);
+}
+.cub-7 .bk {
+  transform:translateZ(-0.25em) rotateY(180deg);
+}
+.cub-7 .rt, .cub-7 .lt {
+  width:0.5em;
+  height:3.5em;
+}
+.cub-7 .tp, .cub-7 .bm {
+  width:0.25em;
+  height:0.5em;
+}
+.cub-7 .face {
+  background-color:#828282;
+}
+.cub-7 .ft {
+  width:0em;
+  margin-left:0.125em;
+}
+.cub-7 .bk {
+  width:0em;
+  margin-left:-0.125em;
+}
+.cub-7 .rt, .cub-7 .lt {
+  width:0.25em;
+}
+.cub-7 .tp, .cub-7 .bm, .cub-7 .tp .photon-shader, .cub-7 .bm .photon-shader {
+  border-radius:0.125em;
+}
+.cub-7 .cr {
+  width:0.125em;
+  left:0.0625em;
+}
+.cub-7 .cr-0 {
+  transform: translate3D(0em, 0, 0.125em);
+}
+.cub-7 .cr-1 {
+  transform: translate3D(0em, 0, -0.125em);
+}
+.cub-7 .cr-2 {
+  transform: translate3D(0, 0, -0.125em);
+}
+.cub-7 .cr-3 {
+  transform: translate3D(0, 0, 0.125em);
+}
+.cub-7 .cr-0 .s0 {
+  transform: rotateY(15deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-0 .s1 {
+  transform: rotateY(45deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-0 .s2 {
+  transform: rotateY(75deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-1 .s0 {
+  transform: rotateY(105deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-1 .s1 {
+  transform: rotateY(135deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-1 .s2 {
+  transform: rotateY(165deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-2 .s0 {
+  transform: rotateY(195deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-2 .s1 {
+  transform: rotateY(225deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-2 .s2 {
+  transform: rotateY(255deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-3 .s0 {
+  transform: rotateY(285deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-3 .s1 {
+  transform: rotateY(315deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .cr-3 .s2 {
+  transform: rotateY(345deg) translate3D(-50%, 0, 0.1em);
+}
+.cub-7 .side {
+  width:0.09198729810778067em;
+}
+/* .cyl-4 styles */
+.cyl-4 {
+  transform:translate3D(2.1024184149184144em, 3.2569971694971693em, 0.8546703296703276em) rotateX(-30deg) rotateY(2deg) rotateZ(129deg);
+  opacity:1;
+  width:2.5em;
+  height:1.0909090909090908em;
+  margin:-0.5454545454545454em 0 0 -1.25em;
+}
+.cyl-4 .tp, .cyl-4 .bm {
+  width:2.5em;
+  height:2.5em;
+}
+.cyl-4 .side {
+  width:0.5956086859753749em;
+  height:1.0909090909090908em;
+}
+.cyl-4 .s0 {
+  transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s1 {
+  transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s2 {
+  transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s3 {
+  transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s4 {
+  transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s5 {
+  transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s6 {
+  transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s7 {
+  transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s8 {
+  transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s9 {
+  transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s10 {
+  transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s11 {
+  transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s12 {
+  transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .s13 {
+  transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-4 .face, .cyl-4 .side {
+  background-color:#FFFFFF;
+}
+.cyl-4 .tp {
+  background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+}
+.cyl-4 .bm {
+  background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+}
+.cyl-4 .side {
+  background:url(https://www.linkpicture.com/q/llanta-frontal.png);
+}
+/* .cyl-5 styles */
+.cyl-5 {
+  transform:translate3D(2.0254953379953378em, 1.7954587079587079em, -1.4145604395604419em) rotateX(-30deg) rotateY(2deg) rotateZ(129deg);
+  opacity:1;
+  width:2.5em;
+  height:1.0909090909090908em;
+  margin:-0.5454545454545454em 0 0 -1.25em;
+}
+.cyl-5 .tp, .cyl-5 .bm {
+  width:2.5em;
+  height:2.5em;
+}
+.cyl-5 .side {
+  width:0.5956086859753749em;
+  height:1.0909090909090908em;
+}
+.cyl-5 .s0 {
+  transform: rotateY(12.857142857142858deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s1 {
+  transform: rotateY(38.57142857142857deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s2 {
+  transform: rotateY(64.28571428571429deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s3 {
+  transform: rotateY(90deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s4 {
+  transform: rotateY(115.71428571428572deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s5 {
+  transform: rotateY(141.42857142857144deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s6 {
+  transform: rotateY(167.14285714285714deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s7 {
+  transform: rotateY(192.85714285714286deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s8 {
+  transform: rotateY(218.57142857142858deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s9 {
+  transform: rotateY(244.2857142857143deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s10 {
+  transform: rotateY(270deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s11 {
+  transform: rotateY(295.7142857142857deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s12 {
+  transform: rotateY(321.4285714285714deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .s13 {
+  transform: rotateY(347.1428571428571deg) translate3D(-50%, 0, 1.225em);
+}
+.cyl-5 .face, .cyl-5 .side {
+  background-color:#FFFFFF;
+}
+.cyl-5 .tp {
+  background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+}
+.cyl-5 .bm {
+  background:url(https://www.linkpicture.com/q/llanta-lateral.png);
+}
+.cyl-5 .side {
+  background:url(https://www.linkpicture.com/q/llanta-frontal.png);
+}
