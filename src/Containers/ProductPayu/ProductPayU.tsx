@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 /* 
 //import the necessary modules
 import React, { useEffect, useState } from 'react';
